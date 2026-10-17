@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truth &amp; Dare — The Card Party Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3B2B20;
+    --cream:#FFF6E9;
+    --paper:#FFFDF7;
+    --yellow:#FFC93C;
+    --coral:#FF6B6B;
+    --teal:#3EC9B0;
+    --purple:#A78BFA;
+    --orange:#FF9F45;
+    --sky:#7EC8FF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Fredoka','Comic Sans MS','Chalkboard SE',rounded,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow:hidden;
+    position:relative;
+  }
+  /* ---------- text-built cartoon world background ---------- */
+  .world{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .float-letter{
+    position:absolute;font-weight:700;opacity:.10;user-select:none;
+    animation:drift linear infinite;
+  }
+  @keyframes drift{
+    0%{transform:translateY(15vh) rotate(-8deg);}
+    50%{transform:translateY(-8vh) rotate(8deg);}
+    100%{transform:translateY(15vh) rotate(-8deg);}
+  }
+  .ground{
+    position:fixed;left:0;right:0;bottom:0;height:34px;z-index:0;pointer-events:none;
+    font-size:22px;line-height:34px;letter-spacing:6px;color:rgba(59,43,32,.14);
+    white-space:nowrap;overflow:hidden;font-weight:700;
+  }
+  .cloud{position:fixed;font-size:26px;opacity:.55;animation:floaty 7s ease-in-out infinite;z-index:0;pointer-events:none;}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  .sun{position:fixed;top:34px;right:52px;font-size:52px;animation:spinSun 18s linear infinite;z-index:0;pointer-events:none;}
+  @keyframes spinSun{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+  /* ---------- screens ---------- */
+  .screen{
+    position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
+    z-index:2;padding:24px;
+  }
+  .screen.active{display:flex;animation:popIn .45s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes popIn{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
+
+  .stage-title{font-size:54px;font-weight:700;letter-spacing:1px;margin-bottom:6px;text-align:center;}
+  .stage-title .ltr{display:inline-block;animation:bounceL 2.6s ease-in-out infinite;}
+  .stage-title .ltr:nth-child(odd){animation-delay:.15s;}
+  .stage-title .ltr:nth-child(3n){animation-delay:.3s;}
+  @keyframes bounceL{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+  .stage-sub{font-size:19px;font-weight:500;opacity:.75;margin-bottom:34px;text-align:center;}
+
+  .c-yellow{color:var(--yellow);} .c-coral{color:var(--coral);} .c-teal{color:var(--teal);}
+  .c-purple{color:var(--purple);} .c-orange{color:var(--orange);} .c-sky{color:var(--sky);}
+
+  /* ---------- chunky cartoon buttons ---------- */
+  .btn{
+    font-family:inherit;font-weight:700;font-size:22px;color:var(--ink);
+    background:var(--yellow);border:4px solid var(--ink);border-radius:18px;
+    padding:14px 42px;cursor:pointer;
+    box-shadow:0 7px 0 var(--ink);transition:transform .08s,box-shadow .08s;
+    letter-spacing:.5px;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 9px 0 var(--ink);}
+  .btn:active{transform:translateY(5px);box-shadow:0 2px 0 var(--ink);}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 7px 0 var(--ink);}
+  .btn.small{font-size:16px;padding:9px 22px;border-radius:13px;box-shadow:0 5px 0 var(--ink);}
+  .btn.teal{background:var(--teal);color:#fff;}
+  .btn.coral{background:var(--coral);color:#fff;}
+  .btn.purple{background:var(--purple);color:#fff;}
+  .btn.ghost{background:var(--paper);}
+
+  /* ---------- difficulty cards ---------- */
+  .diff-row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;}
+  .diff-card{
+    width:230px;padding:30px 20px 26px;border:4px solid var(--ink);border-radius:24px;
+    cursor:pointer;text-align:center;position:relative;
+    transition:transform .15s;box-shadow:0 8px 0 var(--ink);
+  }
+  .diff-card:hover{transform:translateY(-6px) rotate(-1.2deg);}
+  .diff-card .emoji{font-size:56px;display:block;margin-bottom:10px;}
+  .diff-card .name{font-size:30px;font-weight:700;letter-spacing:1px;}
+  .diff-card .desc{font-size:14.5px;font-weight:500;margin-top:8px;opacity:.8;line-height:1.35;}
+  .diff-card.low{background:var(--teal);color:#fff;}
+  .diff-card.medium{background:var(--orange);color:#fff;}
+  .diff-card.high{background:var(--coral);color:#fff;}
+  .diff-card .ribbon{
+    position:absolute;top:-18px;left:50%;transform:translateX(-50%) rotate(-3deg);
+    background:var(--yellow);color:var(--ink);border:3px solid var(--ink);border-radius:10px;
+    padding:3px 14px;font-size:14px;font-weight:700;
+  }
+
+  /* ---------- player count ---------- */
+  .panel{
+    background:var(--paper);border:4px solid var(--ink);border-radius:26px;
+    box-shadow:8px 8px 0 var(--ink);padding:36px 44px;text-align:center;max-width:520px;
+  }
+  .num-input{
+    font-family:inherit;font-weight:700;font-size:64px;text-align:center;width:200px;
+    border:4px solid var(--ink);border-radius:18px;background:var(--cream);color:var(--ink);
+    padding:6px 10px;outline:none;
+  }
+  .num-input:focus{background:#fff;}
+  .stepper{display:flex;gap:14px;justify-content:center;margin:20px 0 26px;}
+  .stepper button{
+    font-family:inherit;font-size:28px;font-weight:700;width:58px;height:58px;
+    border:4px solid var(--ink);border-radius:16px;background:var(--yellow);cursor:pointer;
+    box-shadow:0 5px 0 var(--ink);transition:transform .08s,box-shadow .08s;color:var(--ink);
+  }
+  .stepper button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink);}
+  .hint{font-size:15px;opacity:.65;font-weight:500;margin-top:16px;}
+
+  /* ---------- spinner ---------- */
+  .spinner-box{
+    width:290px;height:290px;border:6px solid var(--ink);border-radius:50%;
+    background:conic-gradient(var(--yellow) 0 40deg,var(--teal) 40deg 100deg,var(--coral) 100deg 170deg,
+      var(--purple) 170deg 230deg,var(--orange) 230deg 290deg,var(--sky) 290deg 360deg);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:10px 10px 0 var(--ink);position:relative;margin-bottom:34px;
+  }
+  .spinner-box::after{
+    content:"";position:absolute;width:34px;height:34px;border-radius:50%;
+    background:var(--paper);border:5px solid var(--ink);
+  }
+  .spin-number{
+    width:170px;height:170px;border-radius:50%;background:var(--paper);border:5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;font-size:86px;font-weight:700;
+    z-index:1;position:relative;
+  }
+  .spin-number.rolling{animation:wiggle .18s linear infinite;}
+  @keyframes wiggle{0%{transform:rotate(-4deg) scale(1.02);}50%{transform:rotate(4deg);}100%{transform:rotate(-4deg) scale(1.02);}}
+  .spin-number.landed{animation:landPop .5s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes landPop{0%{transform:scale(.4);}60%{transform:scale(1.18);}100%{transform:scale(1);}}
+  .spinner-cap{font-size:44px;position:absolute;top:-30px;}
+
+  /* ---------- choice cards ---------- */
+  .choice-row{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;}
+  .choice-card{
+    width:280px;height:330px;border:5px solid var(--ink);border-radius:26px;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    box-shadow:0 9px 0 var(--ink);transition:transform .16s;position:relative;overflow:hidden;
+  }
+  .choice-card:hover{transform:translateY(-8px) rotate(1.5deg) scale(1.03);}
+  .choice-card .big{font-size:74px;}
+  .choice-card .word{font-size:40px;font-weight:700;letter-spacing:2px;}
+  .choice-card .tagline{font-size:15px;font-weight:500;opacity:.85;}
+  .choice-card.truth{background:var(--teal);color:#fff;}
+  .choice-card.dare{background:var(--coral);color:#fff;}
+  .choice-card .mini-cards{font-size:30px;letter-spacing:6px;opacity:.9;}
+
+  /* ---------- draw / flip card ---------- */
+  .card-zone{perspective:1400px;margin-bottom:30px;}
+  .flip-card{
+    width:min(560px,88vw);min-height:330px;position:relative;transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.34,1.2,.64,1);
+  }
+  .flip-card.flipped{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute;inset:0;backface-visibility:hidden;border:5px solid var(--ink);
+    border-radius:28px;box-shadow:10px 10px 0 var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:34px 38px;
+  }
+  .flip-back{
+    background:repeating-linear-gradient(45deg,var(--purple) 0 16px,#8f6ff0 16px 32px);
+    color:#fff;gap:8px;
+  }
+  .flip-back .qmark{font-size:88px;font-weight:700;text-shadow:4px 4px 0 rgba(0,0,0,.18);}
+  .flip-back .back-label{font-size:26px;font-weight:700;letter-spacing:3px;text-shadow:2px 2px 0 rgba(0,0,0,.18);}
+  .flip-back .back-sub{font-size:15px;font-weight:500;opacity:.9;}
+  .flip-front{background:var(--paper);transform:rotateY(180deg);gap:16px;}
+  .flip-front.truth-front{background:#E9FBF6;}
+  .flip-front.dare-front{background:#FFEDEA;}
+  .q-text{font-size:25px;font-weight:600;line-height:1.45;text-align:center;}
+  .q-badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .badge{
+    font-size:13px;font-weight:700;letter-spacing:1px;padding:5px 14px;border-radius:999px;
+    border:3px solid var(--ink);color:#fff;text-transform:uppercase;
+  }
+  .badge.low{background:var(--teal);} .badge.medium{background:var(--orange);} .badge.high{background:var(--coral);}
+  .badge.reg{background:var(--purple);} .badge.cat{background:var(--sky);color:var(--ink);}
+  .badge.kind-truth{background:var(--teal);} .badge.kind-dare{background:var(--coral);}
+  .flip-hint{font-size:26px;font-weight:600;opacity:.8;margin-top:8px;animation:hintPulse 1.6s ease-in-out infinite;}
+  @keyframes hintPulse{0%,100%{transform:scale(1);opacity:.75;}50%{transform:scale(1.07);opacity:1;}}
+
+  /* ---------- HUD ---------- */
+  .hud{
+    position:fixed;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;
+    align-items:center;z-index:5;pointer-events:none;
+  }
+  .hud-chip{
+    background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:7px 16px;
+    font-size:15px;font-weight:700;box-shadow:4px 4px 0 var(--ink);display:flex;gap:8px;align-items:center;
+  }
+  .hud-chip .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);display:inline-block;}
+  .hud-right{display:flex;gap:10px;pointer-events:auto;}
+  .toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);
+    background:var(--ink);color:var(--cream);font-weight:600;font-size:16px;
+    padding:12px 26px;border-radius:14px;z-index:9;transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    border:3px solid var(--cream);
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center;}
+  .footer-note{margin-top:26px;font-size:14px;font-weight:500;opacity:.55;}
+</style>
+</head>
+<body>
+
+<!-- text-built cartoon world -->
+<div class="world" id="world"></div>
+<div class="sun">☀</div>
+<div class="cloud" style="top:70px;left:8%;animation-delay:0s">☁</div>
+<div class="cloud" style="top:130px;left:22%;animation-delay:1.4s">☁</div>
+<div class="cloud" style="top:60px;right:20%;animation-delay:2.2s">☁</div>
+<div class="ground" id="ground"></div>
+
+<!-- HUD -->
+<div class="hud" id="hud" style="display:none;">
+  <div class="hud-chip"><span class="dot" id="hud-dot"></span><span id="hud-text">—</span></div>
+  <div class="hud-right">
+    <div class="hud-chip" id="hud-round">Round 1</div>
+    <button class="btn small ghost" id="btn-menu">MENU</button>
+  </div>
+</div>
+
+<!-- SCREEN 1 : difficulty -->
+<div class="screen active" id="screen-difficulty">
+  <div class="stage-title" id="title-main"></div>
+  <div class="stage-sub">A cartoon card world of questions &amp; dares — pick your bravery level!</div>
+  <div class="diff-row">
+    <div class="diff-card low" data-diff="low">
+      <div class="ribbon">chill vibes</div>
+      <span class="emoji">🌱</span>
+      <div class="name">LOW</div>
+      <div class="desc">Easy, friendly &amp; funny. Perfect for icebreakers and new friends.</div>
+    </div>
+    <div class="diff-card medium" data-diff="medium">
+      <div class="ribbon">spicy fun</div>
+      <span class="emoji">🔥</span>
+      <div class="name">MEDIUM</div>
+      <div class="desc">Silly challenges &amp; bolder questions. Laughter guaranteed.</div>
+    </div>
+    <div class="diff-card high" data-diff="high">
+      <div class="ribbon">no mercy</div>
+      <span class="emoji">🌋</span>
+      <div class="name">HIGH</div>
+      <div class="desc">Wild dares &amp; deep truths. Only for the brave!</div>
+    </div>
+  </div>
+  <div class="footer-note">Best played with 2+ friends • All content in English</div>
+</div>
+
+<!-- SCREEN 2 : player count -->
+<div class="screen" id="screen-players">
+  <div class="stage-title">How many <span class="c-purple">players</span>?</div>
+  <div class="stage-sub">Enter the number of players sitting in the circle.</div>
+  <div class="panel">
+    <input class="num-input" id="player-count" type="number" min="2" max="30" value="4" inputmode="numeric">
+    <div class="stepper">
+      <button id="pc-minus" type="button">−</button>
+      <button id="pc-plus" type="button">+</button>
+    </div>
+    <button class="btn teal" id="btn-confirm-players">CONFIRM ✓</button>
+    <div class="hint">Each player gets a number. 2 – 30 players.</div>
+  </div>
+</div>
+
+<!-- SCREEN 3 : random player spin -->
+<div class="screen" id="screen-spin">
+  <div class="stage-title">Spin for the <span class="c-orange">chosen one</span>!</div>
+  <div class="stage-sub">The wheel picks a random player number.</div>
+  <div class="spinner-box">
+    <span class="spinner-cap">🎯</span>
+    <div class="spin-number" id="spin-number">?</div>
+  </div>
+  <button class="btn coral" id="btn-spin">🎡 SPIN THE WHEEL</button>
+  <div class="row" style="margin-top:22px;">
+    <button class="btn teal" id="btn-confirm-player" style="display:none;">CONFIRM PLAYER ✓</button>
+  </div>
+</div>
+
+<!-- SCREEN 4 : truth or dare choice -->
+<div class="screen" id="screen-choice">
+  <div class="stage-title">Player <span id="choice-player-num" class="c-coral">#1</span> — your fate!</div>
+  <div class="stage-sub">Pick your poison: reveal a truth... or take a dare!</div>
+  <div class="choice-row">
+    <div class="choice-card truth" id="card-truth">
+      <span class="big">🧠</span>
+      <div class="word">TRUTH</div>
+      <div class="tagline">Answer honestly. No skipping!</div>
+      <div class="mini-cards">🂠 🂠 🂠</div>
+    </div>
+    <div class="choice-card dare" id="card-dare">
+      <span class="big">🎪</span>
+      <div class="word">DARE</div>
+      <div class="tagline">Complete the mission. No chickening out!</div>
+      <div class="mini-cards">🂡 🂡 🂡</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 5 : draw card -->
+<div class="screen" id="screen-draw">
+  <div class="stage-title" id="draw-title">Draw your <span class="c-teal">TRUTH</span> card</div>
+  <div class="card-zone">
+    <div class="flip-card" id="flip-card">
+      <div class="flip-face flip-back" id="flip-back">
+        <div class="qmark">?</div>
+        <div class="back-label" id="back-label">TRUTH</div>
+        <div class="back-sub" id="back-sub">mystery card</div>
+      </div>
+      <div class="flip-face flip-front" id="flip-front">
+        <div class="q-badges" id="q-badges"></div>
+        <div class="q-text" id="q-text"></div>
+      </div>
+    </div>
+  </div>
+  <button class="btn purple" id="btn-draw">🎴 DRAW A CARD</button>
+  <div class="row" style="margin-top:22px;">
+    <button class="btn teal" id="btn-next-round" style="display:none;">DONE ✓ NEXT PLAYER</button>
+    <button class="btn small ghost" id="btn-redo" style="display:none;">↺ DRAW ANOTHER</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   DATA — TRUTH QUESTIONS (region / category / intensity)
+   Based on the sample table structure (cultural_note ignored)
+   ============================================================ */
+const TRUTH_BANK = {
+  low: [
+    {region:"Europe",cat:"Strangers",text:"What is your favorite regional comfort food or pastry from back home?"},
+    {region:"Europe",cat:"Strangers",text:"Which European city would you love to get lost in for a weekend, and why?"},
+    {region:"Europe",cat:"Strangers",text:"Mountains, beaches, or old cobblestone towns — what is your dream holiday?"},
+    {region:"Europe",cat:"Strangers",text:"What is one souvenir you always bring home from your travels?"},
+    {region:"Europe",cat:"Friends",text:"How do you feel about comfortable silence versus small talk when hanging out with close friends?"},
+    {region:"Europe",cat:"Friends",text:"What is your favorite memory with this group that still makes you laugh?"},
+    {region:"Europe",cat:"Friends",text:"If we opened a little café together, what would we name it?"},
+    {region:"Europe",cat:"Friends",text:"Which of our friends would survive longest in a medieval castle, and why?"},
+    {region:"China",cat:"Strangers",text:"What is your go-to comfort dish that brings back memories of family gatherings?"},
+    {region:"China",cat:"Strangers",text:"What is your favorite festival food: dumplings, mooncakes, or zongzi?"},
+    {region:"China",cat:"Strangers",text:"Which city in China is at the top of your travel list?"},
+    {region:"China",cat:"Strangers",text:"Do you prefer tea or coffee, and what is your go-to order?"},
+    {region:"China",cat:"Friends",text:"Have you ever turned down a favor or gift multiple times out of politeness before accepting?"},
+    {region:"China",cat:"Friends",text:"What is the best home-cooked meal a family member ever made for you?"},
+    {region:"China",cat:"Friends",text:"Which friend in this room would you trust to plan your entire birthday?"},
+    {region:"China",cat:"Friends",text:"What nickname did your family call you as a kid?"},
+    {region:"USA",cat:"Strangers",text:"What is your ultimate regional American comfort food or favorite road trip route?"},
+    {region:"USA",cat:"Strangers",text:"Pancakes, waffles, or bacon and eggs — what is your perfect breakfast?"},
+    {region:"USA",cat:"Strangers",text:"Which superpower would you pick: flying, invisibility, or time travel?"},
+    {region:"USA",cat:"Strangers",text:"What is the last movie or show that made you laugh out loud?"},
+    {region:"USA",cat:"Friends",text:"Have you ever pursued a passionate side-hustle or personal passion project outside work?"},
+    {region:"USA",cat:"Friends",text:"What was your very first job, and what did you learn from it?"},
+    {region:"USA",cat:"Friends",text:"Which friend here would win a reality TV show, and who would be eliminated first?"},
+    {region:"USA",cat:"Friends",text:"What is your most-used emoji in our group chat?"},
+    {region:"Europe",cat:"Strangers",text:"Which European dish could you eat every single day without getting tired of it?"},
+    {region:"Europe",cat:"Strangers",text:"Croissant or crêpe — which breakfast wins your heart?"},
+    {region:"Europe",cat:"Strangers",text:"What is one word from another language you wish your own language had?"},
+    {region:"Europe",cat:"Strangers",text:"Do you prefer big cities or tiny villages when you travel?"},
+    {region:"Europe",cat:"Strangers",text:"What is the best free thing to do in your hometown?"},
+    {region:"Europe",cat:"Friends",text:"Which trip with friends would you redo exactly as it happened?"},
+    {region:"Europe",cat:"Friends",text:"What snack do you always bring to a movie night?"},
+    {region:"Europe",cat:"Friends",text:"Who in this room would you call to help you move apartments?"},
+    {region:"Europe",cat:"Friends",text:"What is your favorite inside joke that we share?"},
+    {region:"Europe",cat:"Friends",text:"If our friend group had a motto, what should it be?"},
+    {region:"China",cat:"Strangers",text:"Hot pot or barbecue — which dinner would you pick tonight?"},
+    {region:"China",cat:"Strangers",text:"What is your favorite midnight snack?"},
+    {region:"China",cat:"Strangers",text:"Which Chinese festival do you enjoy the most, and why?"},
+    {region:"China",cat:"Strangers",text:"Do you prefer summer or winter, and what is your favorite season activity?"},
+    {region:"China",cat:"Strangers",text:"What is one dish from your hometown everyone should try?"},
+    {region:"China",cat:"Friends",text:"Who in this room would survive one week without their phone?"},
+    {region:"China",cat:"Friends",text:"What was your favorite game to play as a kid?"},
+    {region:"China",cat:"Friends",text:"Which friend here is the best cook, in your opinion?"},
+    {region:"China",cat:"Friends",text:"What is the funniest thing that ever happened during a meal with friends?"},
+    {region:"China",cat:"Friends",text:"If we started a band, what instrument would each of us play?"},
+    {region:"USA",cat:"Strangers",text:"Burgers, hot dogs, or pizza — rank your top three."},
+    {region:"USA",cat:"Strangers",text:"What is your favorite cartoon from your childhood?"},
+    {region:"USA",cat:"Strangers",text:"Beach vacation or mountain cabin?"},
+    {region:"USA",cat:"Strangers",text:"What is your dream road trip destination?"},
+    {region:"USA",cat:"Strangers",text:"If you could have dinner with any celebrity, who would it be?"},
+    {region:"USA",cat:"Friends",text:"Which friend here tells the best stories?"},
+    {region:"USA",cat:"Friends",text:"What is your favorite board game or video game to play together?"},
+    {region:"USA",cat:"Friends",text:"Who would be the first to get lost on a road trip?"},
+    {region:"USA",cat:"Friends",text:"What is the best prank ever pulled in this friend group?"},
+    {region:"USA",cat:"Friends",text:"What is your go-to karaoke song?"}
+  ],
+  medium: [
+    {region:"Europe",cat:"Strangers",text:"Have you ever experienced culture shock simply moving between nearby cities or regions?"},
+    {region:"Europe",cat:"Strangers",text:"Have you ever pretended to understand a different language and completely failed?"},
+    {region:"Europe",cat:"Strangers",text:"What is one cultural habit from another European country you wish your hometown had?"},
+    {region:"Europe",cat:"Strangers",text:"Have you ever missed a train or flight because of a 'quick' coffee stop?"},
+    {region:"Europe",cat:"Friends",text:"Have you ever split a bill down to the exact cent with friends, or do you prefer taking turns paying?"},
+    {region:"Europe",cat:"Friends",text:"Which friend in this room gives the best advice, and who gives the worst?"},
+    {region:"Europe",cat:"Friends",text:"Have you ever secretly re-gifted a present to another friend?"},
+    {region:"Europe",cat:"Friends",text:"What is the most ridiculous argument you have ever had with a close friend?"},
+    {region:"China",cat:"Strangers",text:"What is a lucky or unlucky number or symbol you pay attention to in everyday life?"},
+    {region:"China",cat:"Strangers",text:"Do you follow your Chinese zodiac predictions, and did any of them come true?"},
+    {region:"China",cat:"Strangers",text:"Have you ever traveled home just for a family meal? What was the occasion?"},
+    {region:"China",cat:"Strangers",text:"What is one tradition your family keeps that surprises outsiders?"},
+    {region:"China",cat:"Friends",text:"How do you balance showing respect to elders while staying true to your personal ambitions?"},
+    {region:"China",cat:"Friends",text:"Have you ever hidden a purchase from your family? Were you ever caught?"},
+    {region:"China",cat:"Friends",text:"Which family expectation has shaped a big decision in your life?"},
+    {region:"China",cat:"Friends",text:"What is one thing you admire about how your parents grew up?"},
+    {region:"USA",cat:"Strangers",text:"How comfortable are you striking up a casual conversation with a complete stranger?"},
+    {region:"USA",cat:"Strangers",text:"What is the most 'touristy' thing you have ever done in your own city?"},
+    {region:"USA",cat:"Strangers",text:"Do you root for a team just because your family does? Which one?"},
+    {region:"USA",cat:"Strangers",text:"What is your go-to small-talk topic when meeting someone new?"},
+    {region:"USA",cat:"Friends",text:"What is your favorite high school or college sports memory or rivalry tradition?"},
+    {region:"USA",cat:"Friends",text:"Which friend here would you call first with big news, and why?"},
+    {region:"USA",cat:"Friends",text:"What is a friendship rule you live by that others might find strict?"},
+    {region:"USA",cat:"Friends",text:"Have you ever stayed friends with an ex? How did it go?"},
+    {region:"Europe",cat:"Strangers",text:"Have you ever tried to speak a few words in a language you don't know, hoping for the best?"},
+    {region:"Europe",cat:"Strangers",text:"What is one European tradition you have always wanted to experience but never have?"},
+    {region:"Europe",cat:"Strangers",text:"Have you ever waved back at someone who was actually waving at the person behind you?"},
+    {region:"Europe",cat:"Strangers",text:"Siesta, fika, or afternoon tea — which tradition appeals to you most, and why?"},
+    {region:"Europe",cat:"Strangers",text:"What is the longest you have gone without checking your phone while traveling?"},
+    {region:"Europe",cat:"Friends",text:"Which friend's advice do you value most, even when it is hard to hear?"},
+    {region:"Europe",cat:"Friends",text:"Have you ever said 'I'm five minutes away' while still getting ready?"},
+    {region:"Europe",cat:"Friends",text:"What is one thing you would change about how we plan trips together?"},
+    {region:"Europe",cat:"Friends",text:"Which friend could convince you to do something crazy, and how do they do it?"},
+    {region:"Europe",cat:"Friends",text:"Have you ever pretended to like a gift you actually hated?"},
+    {region:"China",cat:"Strangers",text:"Have you ever stayed up all night just to finish a show or a good book?"},
+    {region:"China",cat:"Strangers",text:"What does 'home' mean to you — a place, a person, or a feeling?"},
+    {region:"China",cat:"Strangers",text:"Have you ever followed your horoscope or zodiac advice before a big decision?"},
+    {region:"China",cat:"Strangers",text:"What is a skill you picked up just from watching videos online?"},
+    {region:"China",cat:"Strangers",text:"Which family rule from your childhood do you still secretly follow?"},
+    {region:"China",cat:"Friends",text:"Which friend do you text the most, and what is it usually about?"},
+    {region:"China",cat:"Friends",text:"Have you ever compared yourself to a friend's success? How did you handle it?"},
+    {region:"China",cat:"Friends",text:"What is one expectation from your family you are still figuring out?"},
+    {region:"China",cat:"Friends",text:"Which family tradition would you keep, and which would you quietly drop?"},
+    {region:"China",cat:"Friends",text:"Have you ever gone along with the group even when you disagreed?"},
+    {region:"USA",cat:"Strangers",text:"What is one thing people assume about you that is completely wrong?"},
+    {region:"USA",cat:"Strangers",text:"Have you ever binge-watched an entire show in one weekend? Which one?"},
+    {region:"USA",cat:"Strangers",text:"What is your go-to excuse when you really just want to stay home?"},
+    {region:"USA",cat:"Strangers",text:"Which trend did you follow that you now regret?"},
+    {region:"USA",cat:"Strangers",text:"What is the most spontaneous thing you have ever done?"},
+    {region:"USA",cat:"Friends",text:"Which friend's opinion influences you the most?"},
+    {region:"USA",cat:"Friends",text:"Have you ever kept score in a friendship — who owes whom a favor?"},
+    {region:"USA",cat:"Friends",text:"What 'green flag' do you look for when making a new friend?"},
+    {region:"USA",cat:"Friends",text:"Have you ever sent a message to the wrong person? What happened?"},
+    {region:"USA",cat:"Friends",text:"Which friend would you trust with your social media passwords?"}
+  ],
+  high: [
+    {region:"Europe",cat:"Strangers",text:"What is one unspoken social rule from your hometown that visitors always accidentally break?"},
+    {region:"Europe",cat:"Strangers",text:"What is a stereotype about your country that secretly feels a little true?"},
+    {region:"Europe",cat:"Strangers",text:"Have you ever felt like a foreigner in your own hometown?"},
+    {region:"Europe",cat:"Strangers",text:"What is one thing tourists do that drives you quietly crazy?"},
+    {region:"Europe",cat:"Friends",text:"What is a deep family tradition or heirloom that carries strong emotional weight for you?"},
+    {region:"Europe",cat:"Friends",text:"Which family expectation do you follow even though you disagree with it?"},
+    {region:"Europe",cat:"Friends",text:"What is a sacrifice you made for someone that they never found out about?"},
+    {region:"Europe",cat:"Friends",text:"Have you ever kept a secret from your best friend to protect them?"},
+    {region:"China",cat:"Strangers",text:"What is a traditional myth or story from your youth that shaped how you view success?"},
+    {region:"China",cat:"Strangers",text:"What does success mean to your family, and does it match your own definition?"},
+    {region:"China",cat:"Strangers",text:"Have you ever hidden your true feelings to keep the peace in a group?"},
+    {region:"China",cat:"Strangers",text:"What is a piece of advice from an elder that changed your life?"},
+    {region:"China",cat:"Friends",text:"What is a situation where you had to work hard to protect someone else's dignity or reputation?"},
+    {region:"China",cat:"Friends",text:"Have you ever pretended to be fine when you were really struggling? What happened?"},
+    {region:"China",cat:"Friends",text:"Which promise to a friend do you most regret breaking — or keeping?"},
+    {region:"China",cat:"Friends",text:"What is something you wish you could tell your parents but haven't?"},
+    {region:"USA",cat:"Strangers",text:"What is a moment where you felt immense pride in a community coming together?"},
+    {region:"USA",cat:"Strangers",text:"What is an unpopular opinion you hold about your hometown culture?"},
+    {region:"USA",cat:"Strangers",text:"When did you last step up for someone when it cost you something?"},
+    {region:"USA",cat:"Strangers",text:"What dream did you quietly give up on, and do you ever revisit it?"},
+    {region:"USA",cat:"Friends",text:"What does the concept of the 'American Dream' mean to you personally right now?"},
+    {region:"USA",cat:"Friends",text:"Which friend do you envy just a little, and why?"},
+    {region:"USA",cat:"Friends",text:"What is the hardest conversation you have avoided having with someone in your life?"},
+    {region:"USA",cat:"Friends",text:"Have you ever almost lost a friendship? What saved it?"},
+    {region:"Europe",cat:"Strangers",text:"What is a prejudice you once held that you are glad you lost?"},
+    {region:"Europe",cat:"Strangers",text:"When did you last genuinely change your mind about something important?"},
+    {region:"Europe",cat:"Strangers",text:"What is a compliment you received that you never forgot?"},
+    {region:"Europe",cat:"Strangers",text:"What fear holds you back that you have never said out loud?"},
+    {region:"Europe",cat:"Strangers",text:"What part of your own culture are you still making peace with?"},
+    {region:"Europe",cat:"Friends",text:"Which secret have you kept the longest, and from whom?"},
+    {region:"Europe",cat:"Friends",text:"What is something you pretend not to care about but actually do?"},
+    {region:"Europe",cat:"Friends",text:"Which friend has seen you at your worst — and what happened?"},
+    {region:"Europe",cat:"Friends",text:"What is a line someone crossed that you never told them about?"},
+    {region:"Europe",cat:"Friends",text:"What do you most fear losing?"},
+    {region:"China",cat:"Strangers",text:"What does success look like for you in ten years?"},
+    {region:"China",cat:"Strangers",text:"Which family sacrifice do you think about the most?"},
+    {region:"China",cat:"Strangers",text:"What is an ambition you have never told your family about?"},
+    {region:"China",cat:"Strangers",text:"When did you last cry, and what was it about?"},
+    {region:"China",cat:"Strangers",text:"What pressure do you put on yourself that nobody else does?"},
+    {region:"China",cat:"Friends",text:"Which apology do you owe someone that you never gave?"},
+    {region:"China",cat:"Friends",text:"What is the loneliest you have ever felt, even while surrounded by people?"},
+    {region:"China",cat:"Friends",text:"Which friend's success once made you question your own path?"},
+    {region:"China",cat:"Friends",text:"What is something you need to hear but avoid asking for?"},
+    {region:"China",cat:"Friends",text:"Which promise do you most regret making?"},
+    {region:"USA",cat:"Strangers",text:"What dream did you abandon in order to be practical?"},
+    {region:"USA",cat:"Strangers",text:"When did you last stand up for a complete stranger?"},
+    {region:"USA",cat:"Strangers",text:"What is your biggest regret about your career or studies so far?"},
+    {region:"USA",cat:"Strangers",text:"What is one truth about yourself that took you years to accept?"},
+    {region:"USA",cat:"Strangers",text:"What masks do you wear in public that quietly tire you out?"},
+    {region:"USA",cat:"Friends",text:"Which friend have you drifted away from — and do you miss them?"},
+    {region:"USA",cat:"Friends",text:"What is the biggest lie you have ever told a friend?"},
+    {region:"USA",cat:"Friends",text:"Which friendship in this room survived something that should have ended it?"},
+    {region:"USA",cat:"Friends",text:"What do you secretly envy about the person to your left?"},
+    {region:"USA",cat:"Friends",text:"What would you change about yourself if you knew nobody would judge you?"}
+  ]
+};
+
+/* ============================================================
+   DATA — DARE ACTIONS (50+ per level)
+   ============================================================ */
+const DARE_BANK = {
+  low: [
+    "Speak in a dramatic movie-trailer voice for the next two rounds.",
+    "Say the alphabet backwards from Z to A without stopping.",
+    "Give a sincere compliment to every player in the room.",
+    "Do your best impression of a celebrity until someone guesses who it is.",
+    "Balance a spoon on your nose for 20 seconds.",
+    "Hum a popular song until someone guesses the title.",
+    "Talk in slow motion until your next turn.",
+    "Make your best animal noise and keep going for 15 seconds.",
+    "Text a friend outside this game a random fruit emoji and nothing else.",
+    "Say 'chirpy chipmunk' five times fast without messing up.",
+    "Do ten jumping jacks while counting in your best sports-announcer voice.",
+    "Hold a plank for 30 seconds while telling us about your day.",
+    "Act like a robot for the next three minutes.",
+    "Give a 20-second TED-talk-style speech about the last thing you ate.",
+    "Whisper everything you say until your next turn.",
+    "Do your best runway walk across the room and back.",
+    "Pretend to be the group's commentator and narrate one round of the game.",
+    "Spin around five times and then try to walk in a straight line.",
+    "Make up a five-word poem about the person to your left.",
+    "Say three nice things about the person sitting across from you.",
+    "Act out your morning routine with no words until someone guesses it.",
+    "Sing everything you say for the next 60 seconds.",
+    "Do your best evil laugh, then explain your evil plan.",
+    "Imitate each player in the room with one signature move.",
+    "Make the silliest face you can and hold it for 15 seconds.",
+    "Tell a joke with a completely straight face — if anyone laughs, you win.",
+    "Pretend to ride an invisible horse around the room for 20 seconds.",
+    "Talk with your tongue on the roof of your mouth until your next turn.",
+    "Do a 15-second commercial for an ordinary object nearby.",
+    "Attempt to raise one eyebrow at a time. If you can't, compliment the whole group.",
+    "Walk like a penguin to grab a drink and back.",
+    "Pretend you are meeting everyone for the first time and introduce yourself in the fanciest way possible.",
+    "Say the tongue twister 'she sells seashells by the seashore' three times fast.",
+    "Mime brushing a very large and angry dog for 20 seconds.",
+    "Create a secret handshake with the player to your right in 30 seconds.",
+    "Dance with no music for 20 seconds like nobody is watching.",
+    "Tell us your best dad joke with full confidence.",
+    "Pretend to be a news anchor reporting on the weather in your room right now.",
+    "Name ten foods in ten seconds.",
+    "Hold a conversation with an imaginary friend for 30 seconds.",
+    "Do a dramatic supermodel pose every time someone says your name for one round.",
+    "Make airplane noises and pretend to take off and land in slow motion.",
+    "Give the group a tour of the room as if it were a famous museum.",
+    "Speak like a knight from medieval times for the next round.",
+    "Try to lick your elbow. Yes, really.",
+    "Do a dramatic reading of the last text message you sent.",
+    "Pretend the floor is lava for the next two minutes.",
+    "Act out your favorite emoji until someone guesses it.",
+    "Make the sound of a dripping faucet for 20 seconds.",
+    "Compliment yourself in your phone camera with total confidence.",
+    "Pretend to juggle three invisible balls with full performance energy.",
+    "Do a 10-second happy dance every time someone says 'the' for one round.",
+    "Narrate your own actions like a nature documentary for one round.",
+    "Say the vowels out loud while doing a silly arm wave for each one.",
+    "Balance an object on your head for 30 seconds while the group asks you questions.",
+    "Do your best impression of a sleepy cat waking up from a long nap.",
+    "Announce every player's next move like a game-show host for one full round."
+  ],
+  medium: [
+    "Let the group look through the first ten photos in your camera roll.",
+    "Talk in an accent chosen by the group for the next three rounds.",
+    "Show the group your most-used emoji and explain the last five chats where you used it.",
+    "Do 15 push-ups while singing 'Happy Birthday'.",
+    "Let the person next to you doodle something on your hand with a pen.",
+    "Read the last message in your chat with your best friend out loud.",
+    "Post the last photo in your camera roll as your social story.",
+    "Let the group choose your profile picture for the next 24 hours.",
+    "Attempt to eat a snack without using your hands.",
+    "Show us your best dance move to a song the group picks.",
+    "Keep a straight face while the group tries to make you laugh for 60 seconds.",
+    "Let the group choose one emoji and one contact; send it (with your supervision).",
+    "Speak only in questions until your next turn.",
+    "Do a plank while reciting the alphabet.",
+    "Let the person to your left restyle your hair however they want.",
+    "Say something nice about every player in the room — in rhyme.",
+    "Demonstrate your worst talent with total confidence.",
+    "Wear your clothes backwards for the next three rounds.",
+    "Let the group read your last three Google searches out loud.",
+    "Talk without fully closing your mouth until your next turn.",
+    "Sing everything you say for the next two rounds.",
+    "Do your best impression of another player until they crack a smile.",
+    "Trade an item of clothing with the player to your right.",
+    "Make up a rap about the person to your left and perform it.",
+    "Let the group pick any photo of you on your phone and describe it to everyone.",
+    "Speak like a sports commentator narrating the group for two minutes.",
+    "Hold eye contact with the player across from you for a full minute without talking.",
+    "Attempt a magic trick with whatever is on the table.",
+    "Tell an embarrassing story using only sound effects and gestures.",
+    "Let the group write a silly word on your hand; keep it until the end of the game.",
+    "Do your best runway walk in slow motion with a dramatic turn at the end.",
+    "Swap seats with a different player every time your turn comes for the rest of the game.",
+    "Call a family member and tell them you love them — no explanations allowed.",
+    "Speak about yourself in third person until your next turn.",
+    "Act like a baby who just learned to walk for 30 seconds.",
+    "Let the group choose your next phone wallpaper.",
+    "Balance a cup of water on your head while walking across the room.",
+    "Tell the story of your week using only movie titles.",
+    "Show the group your most embarrassing selfie.",
+    "Try to make the group laugh using only your face — no words allowed.",
+    "Let the group pick a random contact; send them 'long time no see!'",
+    "Do 20 squats while giving yourself a compliment with each one.",
+    "Act like a cat — stretching, meowing, pawing — for one full round.",
+    "Recreate your most awkward school memory in 30 seconds of mime.",
+    "Give a dramatic Shakespearean monologue about doing the dishes.",
+    "Let another player pick a fun caption; you must post it as your story.",
+    "Speak in an opera voice until your next turn.",
+    "Walk like a zombie around the room while the group claps a slow beat.",
+    "Describe each player in the room using exactly three words, out loud.",
+    "Let the group choose a song; hum it with your mouth completely closed.",
+    "Wear socks on your hands for the next two rounds.",
+    "Make a funny face and let the group take one photo to keep until the game ends.",
+    "Try to say 'toy boat' ten times fast.",
+    "Be a museum statue: the group may pose you however they like for one photo.",
+    "Compose and perform a 30-second jingle advertising yourself.",
+    "Speak like a pirate for the next two rounds, including 'arr' sounds.",
+    "Let the group choose an object; you must praise it like an infomercial host for 30 seconds."
+  ],
+  high: [
+    "Show the group the last five photos in your camera roll and explain each one.",
+    "Let the group pick a funny photo of you from your camera roll and post it as your story.",
+    "Text your crush or closest contact 'I have something to tell you...' and leave them on read.",
+    "Do your most embarrassing dance with no music in the middle of the room.",
+    "Let the group send one honest message to any contact in your phone.",
+    "Speak in a dramatic opera voice while telling us about your last romantic moment.",
+    "Reenact your most awkward date — or an imagined one — in full detail and full drama.",
+    "Let the person next to you choose a word; you must use it in every sentence for two rounds.",
+    "Show the group three entries from your search history — the group picks which.",
+    "Sing a love ballad to an object in the room, with eye contact and real emotion.",
+    "Do an impression of every player in the room until each one laughs.",
+    "Let the group write a funny caption for your last social post — and you must post it as a comment.",
+    "Give a 60-second passionate speech about why you are the best player in this room.",
+    "Let the group pick a contact; call them and sing 'Happy Birthday' whatever the occasion.",
+    "Wear your shirt backwards for the rest of the game.",
+    "Exchange one piece of clothing with the player of the group's choosing.",
+    "Tell the group the most embarrassing general category in your internet history.",
+    "Do 20 jumping jacks while confessing a silly fear after each one.",
+    "Let the group draw a doodle on your face with a washable marker.",
+    "Serenade the person to your left with a made-up love song.",
+    "Let the group read your last conversation with your parents out loud.",
+    "Post the oldest photo of yourself on your phone to your story with the caption 'throwback'.",
+    "Explain your most embarrassing moment in a fancy British accent.",
+    "Let the group pick any song from your playlist and play it out loud.",
+    "Do a 30-second dramatic crying scene about running out of snacks.",
+    "Attempt a cartwheel, a handstand, or your best gymnastics move.",
+    "Strike a dramatic magazine-cover pose chosen by the group and hold it for a full photo.",
+    "Whisper a dramatic secret (real or fake) to each player around the circle.",
+    "Reveal your unread message count and read one random message out loud.",
+    "Do a dramatic slow-motion run across the room while narrating it like a sports announcer.",
+    "Let the group ask you any three questions — you must answer at least two honestly.",
+    "Show the group your phone wallpaper and explain why you chose it.",
+    "Hold a celebrity breakup press conference about someone finishing your favorite snack.",
+    "Let the group pick a random word; make up a 30-second song about it on the spot.",
+    "Tell the group about your weirdest dream in extreme detail, with sound effects.",
+    "Act out a dramatic 'falling in love' movie scene with an imaginary partner.",
+    "Let the group scroll your camera roll for ten seconds — no stopping them.",
+    "Give a wedding-style toast to an inanimate object in the room.",
+    "Demonstrate your signature dance move, then teach it to the whole group.",
+    "Imitate every player's laugh until the group votes on the best impression.",
+    "Let the player to your right choose and mix your next drink.",
+    "Confess a silly childhood crime with a full courtroom-style apology.",
+    "Show the group the worst photo of yourself that exists on your phone.",
+    "Write a poem about the funniest player here and recite it with passion.",
+    "Keep a straight face while the group retells your most embarrassing moments for 60 seconds.",
+    "Let the group choose a pose and a filter; take a photo of you and keep it as your wallpaper for a day.",
+    "Act out a dramatic telenovela scene about someone eating the last cookie.",
+    "Send a voice note singing your current mood to the group chat.",
+    "Reenact a dramatic shampoo commercial using a random object nearby.",
+    "Let the group invent a story about you; you must confirm or deny each detail.",
+    "Perform a 30-second stand-up comedy set about the person to your right.",
+    "Talk like a robot whose battery is dying until your next turn.",
+    "Do your best runway walk with an imaginary red-carpet crowd cheering you on.",
+    "Swap shoes with the player of the group's choosing for the next three rounds.",
+    "Reveal the last thing you searched online and explain yourself with full honesty.",
+    "Hold a dramatic 20-second staring contest with your phone camera while declaring yourself champion.",
+    "Let the group pick a player; you must speak only in that player's voice until your next turn.",
+    "Text the 5th contact in your phone list 'the pigeons have accepted me as one of their own'."
+  ]
+};
+
+/* ============================================================
+   GAME STATE & LOGIC
+   ============================================================ */
+const state = {
+  difficulty: null,
+  playerCount: 0,
+  currentPlayer: null,
+  mode: null,           // "truth" | "dare"
+  round: 1,
+  decks: {},            // decks[diff][type] = remaining array
+};
+
+const $ = id => document.getElementById(id);
+
+/* ---------- text world background ---------- */
+(function buildWorld(){
+  const letters = "TRUTHDARE?!";
+  const colors = ["var(--coral)","var(--teal)","var(--yellow)","var(--purple)","var(--orange)","var(--sky)"];
+  const world = $("world");
+  for(let i=0;i<26;i++){
+    const el = document.createElement("div");
+    el.className = "float-letter";
+    el.textContent = letters[Math.floor(Math.random()*letters.length)];
+    el.style.left = (Math.random()*96)+"%";
+    el.style.top = (Math.random()*80)+"%";
+    el.style.fontSize = (26+Math.random()*70)+"px";
+    el.style.color = colors[i%colors.length];
+    el.style.animationDuration = (6+Math.random()*9)+"s";
+    el.style.animationDelay = (-Math.random()*8)+"s";
+    world.appendChild(el);
+  }
+  $("ground").textContent = "▂▄▆█▆▄▂ ".repeat(60);
+  const t = "TRUTH & DARE";
+  $("title-main").innerHTML = t.split("").map((ch,i)=>
+    `<span class="ltr ${['c-coral','c-teal','c-yellow','c-purple','c-orange','c-sky'][i%6]}">${ch===" "?"&nbsp;":ch}</span>`
+  ).join("");
+})();
+
+/* ---------- helpers ---------- */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  $(id).classList.add("active");
+  $("hud").style.display = id==="screen-difficulty" ? "none" : "flex";
+}
+function updateHUD(){
+  const names = {low:"LOW",medium:"MEDIUM",high:"HIGH"};
+  const dots  = {low:"var(--teal)",medium:"var(--orange)",high:"var(--coral)"};
+  $("hud-text").textContent = `Level: ${names[state.difficulty]} • ${state.playerCount||"—"} players`;
+  $("hud-dot").style.background = dots[state.difficulty]||"transparent";
+  $("hud-round").textContent = `Round ${state.round}`;
+}
+function toast(msg){
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._tm);
+  t._tm = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+
+/* ---------- deck management (no repeats until exhausted) ---------- */
+function refillDeck(type){
+  const source = type==="truth" ? TRUTH_BANK[state.difficulty].map(q=>({...q})) : DARE_BANK[state.difficulty];
+  if(!state.decks[state.difficulty]) state.decks[state.difficulty] = {};
+  state.decks[state.difficulty][type] = shuffle(source);
+}
+function drawCard(type){
+  if(!state.decks[state.difficulty]) state.decks[state.difficulty] = {};
+  const deck = state.decks[state.difficulty][type];
+  const firstFill = !deck;
+  if(firstFill || deck.length===0){
+    refillDeck(type);
+    if(!firstFill) toast("Deck finished — reshuffling the whole deck! 🔀");
+  }
+  return state.decks[state.difficulty][type].pop();
+}
+
+/* ---------- SCREEN 1: difficulty ---------- */
+document.querySelectorAll(".diff-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    state.difficulty = card.dataset.diff;
+    state.round = 1;
+    state.decks = {};
+    updateHUD();
+    showScreen("screen-players");
+  });
+});
+
+/* ---------- SCREEN 2: player count ---------- */
+const pcInput = $("player-count");
+$("pc-minus").addEventListener("click",()=>{ pcInput.value = Math.max(2,(+pcInput.value||2)-1); });
+$("pc-plus").addEventListener("click",()=>{ pcInput.value = Math.min(30,(+pcInput.value||2)+1); });
+$("btn-confirm-players").addEventListener("click",()=>{
+  let n = parseInt(pcInput.value,10);
+  if(isNaN(n)||n<2||n>30){ toast("Please enter a number between 2 and 30! 🙃"); return; }
+  state.playerCount = n;
+  state.round = 1;
+  updateHUD();
+  resetSpinUI();
+  showScreen("screen-spin");
+});
+
+/* ---------- SCREEN 3: spin random player ---------- */
+let spinTimer=null;
+function resetSpinUI(){
+  $("spin-number").textContent = "?";
+  $("spin-number").classList.remove("rolling","landed");
+  $("btn-spin").style.display="";
+  $("btn-confirm-player").style.display="none";
+}
+$("btn-spin").addEventListener("click",()=>{
+  const numEl = $("spin-number");
+  $("btn-spin").disabled = true;
+  numEl.classList.add("rolling"); numEl.classList.remove("landed");
+  let ticks = 0, delay = 60;
+  const target = 1 + Math.floor(Math.random()*state.playerCount);
+  (function tick(){
+    numEl.textContent = 1 + Math.floor(Math.random()*state.playerCount);
+    ticks++;
+    delay *= 1.13;
+    if(ticks < 22){
+      spinTimer = setTimeout(tick, delay);
+    }else{
+      numEl.textContent = target;
+      numEl.classList.remove("rolling");
+      numEl.classList.add("landed");
+      $("btn-spin").disabled = false;
+      $("btn-spin").style.display="none";
+      $("btn-confirm-player").style.display="";
+      state.currentPlayer = target;
+    }
+  })();
+});
+$("btn-confirm-player").addEventListener("click",()=>{
+  $("choice-player-num").textContent = "#"+state.currentPlayer;
+  updateHUD();
+  showScreen("screen-choice");
+});
+
+/* ---------- SCREEN 4: truth or dare ---------- */
+$("card-truth").addEventListener("click",()=> startDraw("truth"));
+$("card-dare").addEventListener("click",()=> startDraw("dare"));
+
+function startDraw(mode){
+  state.mode = mode;
+  const isTruth = mode==="truth";
+  $("draw-title").innerHTML = isTruth
+    ? `Player <span class="c-coral">#${state.currentPlayer}</span> — draw your <span class="c-teal">TRUTH</span> card`
+    : `Player <span class="c-coral">#${state.currentPlayer}</span> — draw your <span class="c-coral">DARE</span> card`;
+  $("back-label").textContent = isTruth ? "TRUTH" : "DARE";
+  $("back-sub").textContent = isTruth ? "a question awaits..." : "a mission awaits...";
+  $("flip-card").classList.remove("flipped");
+  $("btn-draw").style.display="";
+  $("btn-next-round").style.display="none";
+  $("btn-redo").style.display="none";
+  showScreen("screen-draw");
+}
+
+/* ---------- SCREEN 5: draw & flip ---------- */
+$("btn-draw").addEventListener("click",()=>{
+  const card = drawCard(state.mode);
+  const isTruth = state.mode==="truth";
+  const text = isTruth ? card.text : card;   // dare bank stores plain strings
+  const front = $("flip-front");
+  front.classList.toggle("truth-front", isTruth);
+  front.classList.toggle("dare-front", !isTruth);
+  const badges = [
+    `<span class="badge kind-${state.mode}">${isTruth?"TRUTH":"DARE"}</span>`,
+    `<span class="badge ${state.difficulty}">${state.difficulty}</span>`
+  ];
+  if(isTruth && card.region){
+    badges.push(`<span class="badge reg">${card.region}</span>`);
+    badges.push(`<span class="badge cat">${card.cat}</span>`);
+  }
+  $("q-badges").innerHTML = badges.join("");
+  $("q-text").textContent = text;
+  $("flip-card").classList.add("flipped");
+  $("btn-draw").style.display="none";
+  $("btn-next-round").style.display="";
+  $("btn-redo").style.display="";
+  updateHUD();
+});
+
+$("btn-redo").addEventListener("click",()=>{
+  if($("btn-draw").style.display==="none"){
+    $("flip-card").classList.remove("flipped");
+    setTimeout(()=>{
+      $("btn-draw").style.display="";
+      $("btn-next-round").style.display="none";
+      $("btn-redo").style.display="none";
+    },450);
+  }
+});
+
+$("btn-next-round").addEventListener("click",()=>{
+  state.round++;
+  updateHUD();
+  resetSpinUI();
+  showScreen("screen-spin");
+});
+
+/* ---------- menu ---------- */
+$("btn-menu").addEventListener("click",()=>{
+  state.difficulty = null;
+  state.playerCount = 0;
+  state.currentPlayer = null;
+  state.round = 1;
+  updateHUD();
+  showScreen("screen-difficulty");
+});
+</script>
+</body>
+</html>
