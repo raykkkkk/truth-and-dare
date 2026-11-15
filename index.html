@@ -236,6 +236,14 @@
   .flip-front{overflow-y:auto;justify-content:flex-start;}
   .flip-front .q-badges,.flip-front .q-text{flex-shrink:0;}
 
+  /* Localized prompts: allow long cards to scroll without clipping text. */
+  .flip-front{overflow-y:auto;justify-content:flex-start;}
+  .flip-front .q-badges,.flip-front .q-text{flex-shrink:0;}
+
+  /* Localized prompts: allow long cards to scroll without clipping text. */
+  .flip-front{overflow-y:auto;justify-content:flex-start;}
+  .flip-front .q-badges,.flip-front .q-text{flex-shrink:0;}
+
   /* Scroll each stage so long questions and all partner choices stay reachable. */
   .screen{overflow-y:auto;justify-content:flex-start;padding:96px 20px 38px;}
   .screen > *{flex-shrink:0;}
@@ -676,15 +684,7 @@ const TRUTH_BANK = {
       "place": "Guangzhou",
       "cat": "Strangers",
       "text": "At a Guangzhou dim sum table, which dish would you reach for first? What breakfast from your own home would you introduce to the table?",
-      "insight": {
-        "title": "Tainan food culture varies by neighborhood",
-        "text": "Tainan has strong local food traditions, and its street-food and breakfast culture is especially distinctive. The dishes and flavors people prefer still vary by family, generation, and neighborhood.",
-        "topic": "regional food",
-        "sourceName": "Tainan",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Tainan"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-010",
@@ -700,17 +700,7 @@ const TRUTH_BANK = {
       "place": "Chongqing",
       "cat": "Strangers",
       "text": "On a first evening in Chongqing, would you choose a riverside walk, a hillside neighborhood, or hot pot? What attracts you to that choice?",
-      "insight": {
-        "title": "A note on Chinese local customs",
-        "text": "Ideas about lucky numbers, zodiac signs, Lunar New Year, hot pot, and teahouses are widespread but not universal. Beliefs and habits vary by region, generation, family, and personal preference, so this card treats them as conversation starters rather than rules.",
-        "topic": "regional variety",
-        "sourceName": "Chinese New Year, Chinese zodiac, and hot pot",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Chinese_New_Year",
-          "https://en.wikipedia.org/wiki/Chinese_zodiac",
-          "https://en.wikipedia.org/wiki/Hot_pot"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-012",
@@ -742,17 +732,7 @@ const TRUTH_BANK = {
       "place": "Chengdu",
       "cat": "Friends",
       "text": "If this group planned a birthday afternoon in a Chengdu teahouse, who would handle the snacks, the photos, and the surprise?",
-      "insight": {
-        "title": "A note on Chinese local customs",
-        "text": "Ideas about lucky numbers, zodiac signs, Lunar New Year, hot pot, and teahouses are widespread but not universal. Beliefs and habits vary by region, generation, family, and personal preference, so this card treats them as conversation starters rather than rules.",
-        "topic": "regional variety",
-        "sourceName": "Chinese New Year, Chinese zodiac, and hot pot",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Chinese_New_Year",
-          "https://en.wikipedia.org/wiki/Chinese_zodiac",
-          "https://en.wikipedia.org/wiki/Hot_pot"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-016",
@@ -944,15 +924,7 @@ const TRUTH_BANK = {
       "place": "Brussels",
       "cat": "Friends",
       "text": "If our group had a tiny comic-strip mural in Brussels, what would its caption be?",
-      "insight": {
-        "title": "Belgium has multiple official languages",
-        "text": "Belgium has Dutch, French, and German as official languages, with different languages dominant in different regions. Brussels is officially bilingual in French and Dutch, while individual language experiences depend on neighborhood, school, work, and family.",
-        "topic": "language and place",
-        "sourceName": "Languages of Belgium",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Languages_of_Belgium"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-035",
@@ -960,17 +932,7 @@ const TRUTH_BANK = {
       "place": "Chongqing",
       "cat": "Strangers",
       "text": "At a Chongqing hot pot restaurant with a split broth pot, what would you cook first? What is your actual spice comfort zone?",
-      "insight": {
-        "title": "A note on Chinese local customs",
-        "text": "Ideas about lucky numbers, zodiac signs, Lunar New Year, hot pot, and teahouses are widespread but not universal. Beliefs and habits vary by region, generation, family, and personal preference, so this card treats them as conversation starters rather than rules.",
-        "topic": "regional variety",
-        "sourceName": "Chinese New Year, Chinese zodiac, and hot pot",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Chinese_New_Year",
-          "https://en.wikipedia.org/wiki/Chinese_zodiac",
-          "https://en.wikipedia.org/wiki/Hot_pot"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-036",
@@ -1162,15 +1124,7 @@ const TRUTH_BANK = {
       "place": "Dali",
       "cat": "Strangers",
       "text": "At Dali's morning market, would you follow the smell of breakfast or browse the produce first? What market purchase always cheers you up?",
-      "insight": {
-        "title": "Tainan food culture varies by neighborhood",
-        "text": "Tainan has strong local food traditions, and its street-food and breakfast culture is especially distinctive. The dishes and flavors people prefer still vary by family, generation, and neighborhood.",
-        "topic": "regional food",
-        "sourceName": "Tainan",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Tainan"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-058",
@@ -1227,15 +1181,7 @@ const TRUTH_BANK = {
       "place": "Yogyakarta",
       "cat": "Strangers",
       "text": "At a Yogyakarta angkringan, a small evening food stall, would you pick several tiny rice parcels or one familiar snack? How adventurous is your usual late-night order?",
-      "insight": {
-        "title": "Batik is a living textile tradition",
-        "text": "Batik uses wax-resist dyeing techniques and has important regional and cultural variations in Indonesia. It can be everyday clothing, ceremonial clothing, art, or a craft practice; one pattern does not represent all Indonesian batik.",
-        "topic": "textile tradition",
-        "sourceName": "Indonesian batik (UNESCO)",
-        "sourceUrls": [
-          "https://ich.unesco.org/en/RL/indonesian-batik-00170"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-062",
@@ -1422,16 +1368,7 @@ const TRUTH_BANK = {
       "place": "Muscat",
       "cat": "Friends",
       "text": "Along Muscat's Mutrah Corniche at sunset, who here would stop for every photo and who would keep us moving? Which one would you be?",
-      "insight": {
-        "title": "Coffee and dates in Oman",
-        "text": "Serving Arabic coffee with dates is a familiar form of hospitality in Oman and across the region. The details of serving, timing, and conversation depend on the host and occasion; a guest can ask what is customary in that setting.",
-        "topic": "hospitality",
-        "sourceName": "Arabic coffee and dates in Oman",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Arabic_coffee",
-          "https://en.wikipedia.org/wiki/Omani_cuisine"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-077",
@@ -1591,15 +1528,7 @@ const TRUTH_BANK = {
       "place": "Antigua",
       "cat": "Strangers",
       "text": "On Antigua's cobblestone streets, would you choose practical shoes or the pair that looks best in photos? What travel item have you learned to prioritize?",
-      "insight": {
-        "title": "Antigua’s sawdust carpets are temporary art",
-        "text": "During Semana Santa in Antigua Guatemala, alfombras can be made from colored sawdust and other materials along processional routes. They are carefully created and then walked over as part of the procession, which is part of their temporary nature.",
-        "topic": "festival art",
-        "sourceName": "Holy Week in Guatemala",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Holy_Week_in_Guatemala"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-low-089",
@@ -2070,15 +1999,7 @@ const TRUTH_BANK = {
       "place": "Athens",
       "cat": "Strangers",
       "text": "Imagine mistaking a friendly gesture in an Athens square as meant for you. What small public misunderstanding have you had, and how did you recover?",
-      "insight": {
-        "title": "Greek meals are often social",
-        "text": "Greek meals can be shared and social, with dishes placed in the middle and people lingering at the table. Customs differ between families and regions; a shared meal does not imply that every guest has the same preferences or schedule.",
-        "topic": "food and gathering",
-        "sourceName": "Greek cuisine",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Greek_cuisine"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-028",
@@ -2166,17 +2087,7 @@ const TRUTH_BANK = {
       "place": "Chengdu",
       "cat": "Strangers",
       "text": "If a Chengdu teahouse afternoon turned into a whole evening of chatting, what responsibility might you postpone? Admit a recent 'just one more hour' moment.",
-      "insight": {
-        "title": "A note on Chinese local customs",
-        "text": "Ideas about lucky numbers, zodiac signs, Lunar New Year, hot pot, and teahouses are widespread but not universal. Beliefs and habits vary by region, generation, family, and personal preference, so this card treats them as conversation starters rather than rules.",
-        "topic": "regional variety",
-        "sourceName": "Chinese New Year, Chinese zodiac, and hot pot",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Chinese_New_Year",
-          "https://en.wikipedia.org/wiki/Chinese_zodiac",
-          "https://en.wikipedia.org/wiki/Hot_pot"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-036",
@@ -2258,15 +2169,7 @@ const TRUTH_BANK = {
       "place": "Xi'an",
       "cat": "Friends",
       "text": "If everyone wanted a busy Xi'an night market and you needed a quiet evening, would you speak up? Tell us about going along with a group against your preference.",
-      "insight": {
-        "title": "Tainan food culture varies by neighborhood",
-        "text": "Tainan has strong local food traditions, and its street-food and breakfast culture is especially distinctive. The dishes and flavors people prefer still vary by family, generation, and neighborhood.",
-        "topic": "regional food",
-        "sourceName": "Tainan",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Tainan"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-045",
@@ -2451,15 +2354,7 @@ const TRUTH_BANK = {
       "place": "Manila",
       "cat": "Strangers",
       "text": "If a Manila jeepney ride required you to ask another passenger for help, would you feel awkward? What everyday favor do you find harder to request than it should be?",
-      "insight": {
-        "title": "Merienda is a flexible snack break",
-        "text": "Merienda generally means a snack or small meal between larger meals and is used in several Spanish-influenced cultures, including the Philippines. What people eat and when they take the break differs by household and schedule.",
-        "topic": "everyday food",
-        "sourceName": "Merienda",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Merienda"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-063",
@@ -2557,15 +2452,7 @@ const TRUTH_BANK = {
       "place": "Almaty",
       "cat": "Strangers",
       "text": "If an Almaty cafe menu offered something familiar and something you could not pronounce, how would you order? Tell us about a time you laughed at your own attempt to fit in.",
-      "insight": {
-        "title": "A bazaar is more than a tourist scene",
-        "text": "Markets such as Almaty’s Green Bazaar bring together everyday shopping, food, and social exchange. What people buy there depends on season, neighborhood, and household needs, so a market visit can be ordinary as well as cultural.",
-        "topic": "market life",
-        "sourceName": "Green Bazaar",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Green_Bazaar"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-070",
@@ -2589,16 +2476,7 @@ const TRUTH_BANK = {
       "place": "Istanbul",
       "cat": "Friends",
       "text": "If an Istanbul backgammon game got competitive, would you enjoy the banter or want clear rules? Admit a game or argument in which you cared too much about winning.",
-      "insight": {
-        "title": "Tea, simit, and ferry life in Istanbul",
-        "text": "Simit is a sesame-covered bread ring commonly sold in Türkiye, and Istanbul ferries connect the city’s shores. These are familiar parts of urban life for many people, but daily routines differ across neighborhoods and households.",
-        "topic": "city life and food",
-        "sourceName": "Simit and Istanbul ferries",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Simit",
-          "https://en.wikipedia.org/wiki/%C5%9Eehir_Hatlar%C4%B1"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-073",
@@ -2606,15 +2484,7 @@ const TRUTH_BANK = {
       "place": "Beirut",
       "cat": "Strangers",
       "text": "If a Beirut bakery owner offered an extra piece to taste, would you feel obliged to buy more? When has receiving generosity made you uncomfortable rather than simply grateful?",
-      "insight": {
-        "title": "Manoushe has many toppings",
-        "text": "Manoushe is a flatbread commonly associated with Lebanese breakfast and street food, often topped with za’atar, cheese, or other ingredients. Recipes and preferred toppings vary, so there is no single correct version.",
-        "topic": "regional food",
-        "sourceName": "Manakish",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Manakish"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-074",
@@ -2703,15 +2573,7 @@ const TRUTH_BANK = {
       "place": "Cairo",
       "cat": "Friends",
       "text": "If we planned a Cairo museum morning but someone wanted an extra hour at breakfast, how would you negotiate? Which travel preference do you tend to treat as the only sensible one?",
-      "insight": {
-        "title": "Koshary combines several staples",
-        "text": "Koshary commonly combines rice, pasta, lentils, chickpeas, tomato sauce, and fried onions, with variations in serving and toppings. It is a popular Egyptian dish, but people still have personal ways of ordering and seasoning it.",
-        "topic": "street food",
-        "sourceName": "Koshary",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Koshary"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-080",
@@ -2767,15 +2629,7 @@ const TRUTH_BANK = {
       "place": "Accra",
       "cat": "Friends",
       "text": "If an Accra tailor asked you to choose a bold fabric for an outfit, would you pick what you loved or what friends approved of? When did someone else's opinion change what you wore?",
-      "insight": {
-        "title": "Kelewele is spiced fried plantain",
-        "text": "Kelewele is a Ghanaian snack made from seasoned fried plantain, with recipes and heat levels that vary. Street-food names are useful invitations to ask what is in a dish rather than assumptions about how every vendor prepares it.",
-        "topic": "street food",
-        "sourceName": "Kelewele",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Kelewele"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-084",
@@ -2783,15 +2637,7 @@ const TRUTH_BANK = {
       "place": "Lagos",
       "cat": "Strangers",
       "text": "If a Lagos outing was delayed by traffic, how would you tell the person waiting for you? What is the least accurate time estimate you regularly give?",
-      "insight": {
-        "title": "Suya is a spiced grilled meat dish",
-        "text": "Suya is associated with spiced grilled meat and is widely enjoyed in Nigeria and neighboring parts of West Africa. Vendors and regions differ in seasoning, cuts, and accompaniments, so spice levels should be checked rather than assumed.",
-        "topic": "street food",
-        "sourceName": "Suya",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Suya"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-085",
@@ -2847,15 +2693,7 @@ const TRUTH_BANK = {
       "place": "Kingston",
       "cat": "Friends",
       "text": "At a Kingston record shop, would you admit you did not recognize a musician everyone else praised? Tell us about a time you pretended to know a song, film, or reference.",
-      "insight": {
-        "title": "A Jamaican patty is a filled pastry",
-        "text": "Jamaican patties are savory pastries with fillings such as seasoned meat or vegetables, and bakeries offer different styles. Food memories are personal, so a familiar patty can mean something different to each family or neighborhood.",
-        "topic": "everyday food",
-        "sourceName": "Jamaican patty",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Jamaican_patty"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-090",
@@ -2871,15 +2709,7 @@ const TRUTH_BANK = {
       "place": "Medellin",
       "cat": "Friends",
       "text": "Watching dancers in a Medellin plaza, would you join if a friend invited you? What enjoyable thing have you missed because you worried how you would look?",
-      "insight": {
-        "title": "Medellín’s cable cars are public transport",
-        "text": "Medellín’s Metrocable connects hillside neighborhoods with the wider public-transit network. It is transport infrastructure first, even though the views also make it interesting to visitors; local experiences depend on route and daily use.",
-        "topic": "urban mobility",
-        "sourceName": "Metrocable (Medellín)",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Metrocable_(Medell%C3%ADn)"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-092",
@@ -3032,15 +2862,7 @@ const TRUTH_BANK = {
       "place": "Melbourne",
       "cat": "Friends",
       "text": "At a Melbourne cafe, would you send back a coffee made with the wrong milk? When have you accepted a mistake to avoid a brief awkward interaction?",
-      "insight": {
-        "title": "Melbourne’s laneways are mixed-use spaces",
-        "text": "Melbourne’s laneways contain cafes, small businesses, art, residences, and service areas. Their character changes by street and time of day, so the familiar cafe image is only one part of how people use them.",
-        "topic": "city life",
-        "sourceName": "Melbourne laneways",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Lanes_and_arcades_of_Melbourne"
-        ]
-      }
+      "insight": null
     },
     {
       "id": "truth-medium-102",
@@ -3089,23 +2911,15 @@ const TRUTH_BANK = {
       "country": "France",
       "place": "Paris",
       "cat": "Strangers",
-      "text": "In a Paris neighborhood bakery, a greeting can shape an encounter. What unspoken rule from your own home have you mistaken for a universal rule, and what changed your view?",
-      "insight": {
-        "title": "French baking is strongly regional",
-        "text": "French breads, pastries, crepes, and galettes vary by region and by bakery. A neighborhood boulangerie is an everyday food stop for many people, but there is no single pastry that represents every French household.",
-        "topic": "regional food",
-        "sourceName": "French cuisine",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/French_cuisine"
-        ]
-      }
+      "text": "At a Paris neighborhood bakery, a greeting can change the mood. What small rule from home did you once think everyone followed?",
+      "insight": null
     },
     {
       "id": "truth-high-002",
       "country": "Germany",
       "place": "Berlin",
       "cat": "Strangers",
-      "text": "Berlin is often described through ideas of nightlife and reinvention. What label attached to your hometown fits you poorly, and have you ever performed it to belong?",
+      "text": "Berlin is often called a city of nightlife and new beginnings. What label about your hometown feels wrong to you?",
       "insight": null
     },
     {
@@ -3113,7 +2927,7 @@ const TRUTH_BANK = {
       "country": "Bosnia and Herzegovina",
       "place": "Sarajevo",
       "cat": "Strangers",
-      "text": "Sarajevo's streets hold memories from different eras. Has returning to a familiar street ever made you feel like an outsider, and what had changed in you or the place?",
+      "text": "Sarajevo's streets carry memories from different times. Have you ever returned somewhere familiar and felt different?",
       "insight": null
     },
     {
@@ -3121,7 +2935,7 @@ const TRUTH_BANK = {
       "country": "Italy",
       "place": "Venice",
       "cat": "Strangers",
-      "text": "In Venice, an ordinary commute can share space with sightseeing crowds. When have your own travel habits conflicted with how you would want visitors to treat your home?",
+      "text": "In Venice, commuters share streets with tourists. When have you acted as a visitor in a way you would dislike at home?",
       "insight": null
     },
     {
@@ -3129,7 +2943,7 @@ const TRUTH_BANK = {
       "country": "Poland",
       "place": "Krakow",
       "cat": "Friends",
-      "text": "Imagine opening a family recipe book in Krakow. What object, dish, or ritual carries a story you would want this group to understand rather than simply admire?",
+      "text": "Imagine opening a family recipe book in Krakow. What dish or object in your family has a story worth sharing?",
       "insight": null
     },
     {
@@ -3137,7 +2951,7 @@ const TRUTH_BANK = {
       "country": "Greece",
       "place": "Thessaloniki",
       "cat": "Friends",
-      "text": "At a Thessaloniki family table, how would you explain a life choice an elder disliked? Which expectation do you still follow mainly to avoid disappointing someone?",
+      "text": "At a Thessaloniki family table, how would you explain a choice an older relative disliked? What advice do you still follow?",
       "insight": {
         "title": "Greek meals are often social",
         "text": "Greek meals can be shared and social, with dishes placed in the middle and people lingering at the table. Customs differ between families and regions; a shared meal does not imply that every guest has the same preferences or schedule.",
@@ -3153,7 +2967,7 @@ const TRUTH_BANK = {
       "country": "Portugal",
       "place": "Porto",
       "cat": "Friends",
-      "text": "Imagine quietly covering a friend's train fare home from Porto. Have you helped someone in a way they never knew about, and what kept you from telling them?",
+      "text": "Imagine quietly paying a friend's train fare home from Porto. Have you ever helped someone without telling them?",
       "insight": null
     },
     {
@@ -3161,7 +2975,7 @@ const TRUTH_BANK = {
       "country": "Ireland",
       "place": "Cork",
       "cat": "Friends",
-      "text": "During a quiet walk along Cork's River Lee, how would you decide whether a difficult truth would help a friend? Describe your reasoning without exposing their secret.",
+      "text": "On a walk in Cork, how would you decide whether to tell a friend a difficult truth? What would you consider first?",
       "insight": null
     },
     {
@@ -3169,7 +2983,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Quanzhou",
       "cat": "Strangers",
-      "text": "Quanzhou's temples and maritime history offer many stories about fortune and journeys. What story from your own childhood still shapes what you think a successful life should be?",
+      "text": "Quanzhou has stories of temples and sea journeys. What childhood story still affects what you call success?",
       "insight": null
     },
     {
@@ -3177,7 +2991,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Shenzhen",
       "cat": "Strangers",
-      "text": "If you built a career in Shenzhen but someone at home judged success by owning property, whose definition would you follow? Give a brief answer.",
+      "text": "If people at home judged success by owning a home, would you agree? What does success mean to you?",
       "insight": null
     },
     {
@@ -3185,7 +2999,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Guangzhou",
       "cat": "Strangers",
-      "text": "At a Guangzhou reunion dinner, when would keeping the peace become hiding too much of yourself? Share a situation you are comfortable discussing.",
+      "text": "At a Guangzhou family dinner, when would staying quiet feel worse than speaking honestly?",
       "insight": null
     },
     {
@@ -3193,7 +3007,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Chengdu",
       "cat": "Strangers",
-      "text": "Imagine an elder giving you advice over tea in Chengdu. Which advice from an older person still guides you, and which part have you had to outgrow?",
+      "text": "Imagine an older person giving advice over tea in Chengdu. What advice still helps you, and what advice have you outgrown?",
       "insight": null
     },
     {
@@ -3201,7 +3015,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Hangzhou",
       "cat": "Friends",
-      "text": "At a Hangzhou banquet, how would you help someone recover from a public mistake without making it worse? When have you protected another person's dignity at a cost to yourself?",
+      "text": "At a Hangzhou banquet, how would you help someone who made a public mistake?",
       "insight": null
     },
     {
@@ -3209,7 +3023,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Wuhan",
       "cat": "Friends",
-      "text": "If a friend asked how you were doing during a quiet walk beside Wuhan's East Lake, what would help you answer honestly? What support do you find difficult to request?",
+      "text": "If a friend asked how you were on a walk by Wuhan's East Lake, what would help you answer honestly?",
       "insight": null
     },
     {
@@ -3217,7 +3031,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Nanjing",
       "cat": "Friends",
-      "text": "Imagine a friend waiting at Nanjing South station after you broke a promise to meet them. What promise have you regretted breaking or keeping?",
+      "text": "Imagine a friend waiting at Nanjing South station after you missed a promise. What promise have you regretted breaking?",
       "insight": null
     },
     {
@@ -3225,7 +3039,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Qingdao",
       "cat": "Friends",
-      "text": "On a quiet Qingdao seaside walk with family, what conversation would you hope to have someday? Share only the part of it you want this group to hear.",
+      "text": "On a Qingdao seaside walk, what conversation would you like to have with family someday?",
       "insight": null
     },
     {
@@ -3233,7 +3047,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "New Orleans",
       "cat": "Strangers",
-      "text": "Neighborhood groups in New Orleans have organized mutual aid after storms. When have you seen people show up for one another?",
+      "text": "Neighborhood groups in New Orleans help each other after storms. When has someone shown up for you?",
       "insight": null
     },
     {
@@ -3241,7 +3055,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Detroit",
       "cat": "Strangers",
-      "text": "Detroit is often described by outsiders through decline or revival. What outside story about your hometown misses the lives of people you know, and why does it matter to you?",
+      "text": "Detroit is described as a city in decline or renewal. What simple thing about your hometown do outsiders miss?",
       "insight": null
     },
     {
@@ -3249,7 +3063,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Minneapolis",
       "cat": "Strangers",
-      "text": "If a Minneapolis neighbor needed help that would disrupt your own plans, how would you decide what to give? Tell us about a time helping had a real cost for you.",
+      "text": "If a Minneapolis neighbor needed help that disrupted your plans, how would you decide whether to help?",
       "insight": null
     },
     {
@@ -3257,7 +3071,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Los Angeles",
       "cat": "Strangers",
-      "text": "Los Angeles attracts people pursuing creative work. What dream have you put aside for practical reasons, and what part of it still asks for attention?",
+      "text": "Los Angeles attracts people chasing creative work. What dream have you put aside?",
       "insight": null
     },
     {
@@ -3265,7 +3079,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Pittsburgh",
       "cat": "Friends",
-      "text": "Against Pittsburgh's changing industries and neighborhoods, what would your own version of a good life require today? Which ambition have you inherited rather than chosen?",
+      "text": "Pittsburgh has changed through new industries and neighborhoods. What does a good life mean to you now?",
       "insight": null
     },
     {
@@ -3273,7 +3087,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "San Francisco",
       "cat": "Friends",
-      "text": "If a friend could comfortably afford a San Francisco home and you could not, what feeling would you struggle to admit? How would you keep comparison from defining the friendship?",
+      "text": "If a friend could afford a San Francisco home and you could not, what would be hardest to say?",
       "insight": null
     },
     {
@@ -3281,7 +3095,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Boston",
       "cat": "Friends",
-      "text": "Imagine taking a long walk through Boston before a difficult conversation. What are you hoping silence will solve in a conversation you have been postponing?",
+      "text": "Before a difficult conversation, would a long Boston walk help you? What conversation are you avoiding?",
       "insight": null
     },
     {
@@ -3289,7 +3103,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Seattle",
       "cat": "Friends",
-      "text": "If a longtime friend were moving away from Seattle, what would you want to repair before they left? What has actually helped you rebuild a strained friendship?",
+      "text": "If a friend moved away from Seattle, what would you want to fix before they left?",
       "insight": null
     },
     {
@@ -3297,7 +3111,7 @@ const TRUTH_BANK = {
       "country": "United Kingdom",
       "place": "Belfast",
       "cat": "Strangers",
-      "text": "Belfast's neighborhood murals can carry sharply different histories. When have you realized that an opinion you inherited left out someone else's experience?",
+      "text": "Belfast's murals tell different stories. When did you learn that your opinion had left someone out?",
       "insight": null
     },
     {
@@ -3305,7 +3119,7 @@ const TRUTH_BANK = {
       "country": "Belgium",
       "place": "Brussels",
       "cat": "Strangers",
-      "text": "Brussels brings different languages and political views into close contact. What important belief have you revised after listening to someone you initially disagreed with?",
+      "text": "Brussels brings languages and opinions together. What belief have you changed after listening to someone?",
       "insight": {
         "title": "Belgium has multiple official languages",
         "text": "Belgium has Dutch, French, and German as official languages, with different languages dominant in different regions. Brussels is officially bilingual in French and Dutch, while individual language experiences depend on neighborhood, school, work, and family.",
@@ -3321,7 +3135,7 @@ const TRUTH_BANK = {
       "country": "Iceland",
       "place": "Reykjavik",
       "cat": "Strangers",
-      "text": "Imagine receiving a kind remark from a stranger at a Reykjavik swimming pool. What compliment has stayed with you because it recognized something you rarely show?",
+      "text": "At a Reykjavik pool, what compliment has stayed with you?",
       "insight": {
         "title": "Icelandic pools are everyday social spaces",
         "text": "Geothermal swimming pools are common community spaces in Iceland, used for exercise, relaxation, and conversation. Each pool has its own rules, especially around showering before entering, so visitors should follow the posted guidance.",
@@ -3338,7 +3152,7 @@ const TRUTH_BANK = {
       "country": "Norway",
       "place": "Tromso",
       "cat": "Strangers",
-      "text": "In Tromso's long winter nights, what thought might surface when distractions fall away? What fear has influenced your decisions more than you usually admit?",
+      "text": "During Tromso's long winter nights, what worry might come to mind?",
       "insight": {
         "title": "Outdoor life has many forms in Norway",
         "text": "The Norwegian idea of friluftsliv is often translated as outdoor life, but it can include anything from a serious hike to a simple walk. Weather, daylight, access, and personal ability all shape how people take part.",
@@ -3354,7 +3168,7 @@ const TRUTH_BANK = {
       "country": "Spain",
       "place": "Seville",
       "cat": "Strangers",
-      "text": "During a Seville neighborhood celebration, what would make you feel connected to tradition and what might leave you outside it? Give a brief answer.",
+      "text": "At a Seville neighborhood celebration, what would help you feel included?",
       "insight": null
     },
     {
@@ -3362,7 +3176,7 @@ const TRUTH_BANK = {
       "country": "Italy",
       "place": "Trieste",
       "cat": "Friends",
-      "text": "Over a quiet coffee in Trieste, how would you explain the difference between privacy and secrecy? What kind of thing do you keep private to protect your own space?",
+      "text": "Over coffee in Trieste, what do you keep private to protect your space?",
       "insight": null
     },
     {
@@ -3370,7 +3184,7 @@ const TRUTH_BANK = {
       "country": "France",
       "place": "Marseille",
       "cat": "Friends",
-      "text": "Watching ferries leave Marseille, what would you pretend not to miss if you moved away? What attachment do you usually downplay around friends?",
+      "text": "Watching ferries leave Marseille, what would you miss if you moved away?",
       "insight": null
     },
     {
@@ -3378,7 +3192,7 @@ const TRUTH_BANK = {
       "country": "Germany",
       "place": "Leipzig",
       "cat": "Friends",
-      "text": "If you shared a flat in Leipzig with someone here, what vulnerable side of you would they eventually see? What would you want them to understand before judging it?",
+      "text": "If you shared a Leipzig flat with someone here, what side of you would they see first?",
       "insight": null
     },
     {
@@ -3386,7 +3200,7 @@ const TRUTH_BANK = {
       "country": "Netherlands",
       "place": "Rotterdam",
       "cat": "Friends",
-      "text": "On a walk through Rotterdam, how would you tell a friend that a joke had hurt you? What boundary have you left unstated because you feared changing a relationship?",
+      "text": "On a Rotterdam walk, how would you tell a friend their joke hurt you?",
       "insight": null
     },
     {
@@ -3394,7 +3208,7 @@ const TRUTH_BANK = {
       "country": "Switzerland",
       "place": "Geneva",
       "cat": "Friends",
-      "text": "If a move to Geneva offered opportunity but distance from people you love, what would you fear losing most? How does that fear affect a choice you face now?",
+      "text": "If moving to Geneva brought a good opportunity but more distance from loved ones, what would you worry about losing?",
       "insight": null
     },
     {
@@ -3402,7 +3216,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Shanghai",
       "cat": "Strangers",
-      "text": "With Shanghai's pace and living costs in mind, what would a successful ordinary Tuesday look like for you ten years from now? Which part matters even if nobody else notices it?",
+      "text": "With Shanghai's busy pace, what would a good ordinary Tuesday look like for you in ten years?",
       "insight": null
     },
     {
@@ -3410,7 +3224,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Zhengzhou",
       "cat": "Strangers",
-      "text": "A journey through Zhengzhou station can connect very different working lives. What sacrifice by someone close to you has shaped your options, and how do you carry that knowledge?",
+      "text": "A journey through Zhengzhou station shows many working lives. Whose sacrifice has helped you?",
       "insight": null
     },
     {
@@ -3418,7 +3232,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Beijing",
       "cat": "Strangers",
-      "text": "If a Beijing opportunity took your life away from your family's plan, what would be hardest to explain? Which ambition do you hesitate to name to them?",
+      "text": "If a Beijing opportunity went against your family's plan, what would be hardest to explain?",
       "insight": null
     },
     {
@@ -3426,7 +3240,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Kunming",
       "cat": "Strangers",
-      "text": "Imagine a quiet bench beside Kunming's Green Lake after a difficult week. What feeling would you finally allow yourself to acknowledge?",
+      "text": "After a hard week on a Kunming bench, what feeling would you finally admit?",
       "insight": null
     },
     {
@@ -3434,7 +3248,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Shenzhen",
       "cat": "Strangers",
-      "text": "In a Shenzhen coworking space full of visible goals, which standard would you impose on yourself even if no one else asked? What would easing that standard make possible?",
+      "text": "In a Shenzhen coworking space, what standard do you set for yourself even when no one asks?",
       "insight": null
     },
     {
@@ -3442,7 +3256,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Suzhou",
       "cat": "Friends",
-      "text": "On a slow walk beside a Suzhou canal, what apology would you want to find the words for? What has kept you from offering it so far?",
+      "text": "On a Suzhou canal walk, what apology do you wish you could say?",
       "insight": null
     },
     {
@@ -3450,7 +3264,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Chongqing",
       "cat": "Friends",
-      "text": "Among the evening crowds on Chongqing's riverfront, what could make you feel unseen despite being surrounded by people? How could a friend notice without putting you on the spot?",
+      "text": "Among Chongqing's crowds, when have you felt alone? What could a friend do?",
       "insight": null
     },
     {
@@ -3458,7 +3272,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Hangzhou",
       "cat": "Friends",
-      "text": "If a friend launched a successful business in Hangzhou, what might it make you question about your own path? Can you separate what you admire from what you actually want?",
+      "text": "If a friend started a successful Hangzhou business, would you compare your path with theirs?",
       "insight": null
     },
     {
@@ -3466,25 +3280,15 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Chengdu",
       "cat": "Friends",
-      "text": "Over a long Chengdu teahouse conversation, what reassurance would you find hardest to ask this group for? You can describe the need without telling its whole backstory.",
-      "insight": {
-        "title": "A note on Chinese local customs",
-        "text": "Ideas about lucky numbers, zodiac signs, Lunar New Year, hot pot, and teahouses are widespread but not universal. Beliefs and habits vary by region, generation, family, and personal preference, so this card treats them as conversation starters rather than rules.",
-        "topic": "regional variety",
-        "sourceName": "Chinese New Year, Chinese zodiac, and hot pot",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Chinese_New_Year",
-          "https://en.wikipedia.org/wiki/Chinese_zodiac",
-          "https://en.wikipedia.org/wiki/Hot_pot"
-        ]
-      }
+      "text": "During a long Chengdu teahouse chat, what support would be hardest to ask for?",
+      "insight": null
     },
     {
       "id": "truth-high-044",
       "country": "China",
       "place": "Fuzhou",
       "cat": "Friends",
-      "text": "If someone asked you to keep returning to Fuzhou for every family occasion, when would a loving promise become unsustainable? What promise have you needed to renegotiate?",
+      "text": "If someone asked you to return to Fuzhou for every family event, when would you need to say no?",
       "insight": null
     },
     {
@@ -3492,7 +3296,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Nashville",
       "cat": "Strangers",
-      "text": "In a Nashville rehearsal room, would you still make music if it could never become your job? Give a brief answer.",
+      "text": "In a Nashville rehearsal room, would you make music even if it never became a job?",
       "insight": null
     },
     {
@@ -3500,7 +3304,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "New York City",
       "cat": "Strangers",
-      "text": "On a New York subway platform, would you intervene if someone was being treated unfairly? What makes speaking up difficult for you, and what has helped you do it?",
+      "text": "On a New York subway platform, would you speak up if someone was treated unfairly?",
       "insight": null
     },
     {
@@ -3508,7 +3312,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Houston",
       "cat": "Strangers",
-      "text": "If you could revisit an education or career choice while sitting in a Houston diner, what would you reconsider? What did your younger self know then that you should still respect?",
+      "text": "If you could revisit a study or career choice in a Houston diner, which one would you rethink?",
       "insight": null
     },
     {
@@ -3516,7 +3320,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "San Francisco",
       "cat": "Strangers",
-      "text": "San Francisco has offered many people space to live more openly. What part of yourself took time to accept, and what helped you feel less alone with it?",
+      "text": "San Francisco has helped many people live more openly. What part of yourself took time to accept?",
       "insight": null
     },
     {
@@ -3524,7 +3328,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Washington, DC",
       "cat": "Strangers",
-      "text": "At a Washington, DC networking event, which polished version of yourself would you present? What does maintaining that version cost you outside the room?",
+      "text": "At a Washington, DC networking event, what version of yourself would you show?",
       "insight": null
     },
     {
@@ -3532,7 +3336,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Chicago",
       "cat": "Friends",
-      "text": "If an old friend returned to your Chicago neighborhood after years away, would you reach out? What friendship do you miss, and what part of the distance was your responsibility?",
+      "text": "If an old friend returned to Chicago, would you reach out? Which friendship do you miss?",
       "insight": null
     },
     {
@@ -3540,7 +3344,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Philadelphia",
       "cat": "Friends",
-      "text": "At a quiet Philadelphia diner, how would you admit that you had misled a friend? Share a lesson about honesty without disclosing anyone else's private information.",
+      "text": "At a Philadelphia diner, how would you admit you misled a friend?",
       "insight": null
     },
     {
@@ -3548,7 +3352,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Atlanta",
       "cat": "Friends",
-      "text": "If our group reunited in Atlanta after a long silence, what would make reconnection feel real rather than polite? What does repairing trust require from you personally?",
+      "text": "If our group met again in Atlanta after a long silence, what would make it feel real?",
       "insight": null
     },
     {
@@ -3556,7 +3360,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Denver",
       "cat": "Friends",
-      "text": "Watching people start different lives in Denver, whose freedom or stability might you quietly envy? What does that feeling reveal about a need of your own?",
+      "text": "Watching people start new lives in Denver, what freedom or stability might you envy?",
       "insight": null
     },
     {
@@ -3564,7 +3368,7 @@ const TRUTH_BANK = {
       "country": "United States",
       "place": "Portland, Oregon",
       "cat": "Friends",
-      "text": "If you joined a Portland community class where nobody knew your history, what side of yourself would you let emerge? What holds that side back around people who already know you?",
+      "text": "At a Portland class where nobody knew you, what side of yourself would you show?",
       "insight": null
     },
     {
@@ -3572,23 +3376,15 @@ const TRUTH_BANK = {
       "country": "Japan",
       "place": "Osaka",
       "cat": "Strangers",
-      "text": "An Osaka shopping arcade can hold family-run stalls beside newer businesses. If your own family had a shop, would you feel responsible for continuing it? Give a brief answer.",
-      "insight": {
-        "title": "Local food traditions can be city-specific",
-        "text": "Osaka is often associated with foods such as takoyaki and okonomiyaki, but people in Osaka eat a wide range of foods and do not all share the same tastes. City food identities are useful clues, not complete descriptions of residents.",
-        "topic": "city food culture",
-        "sourceName": "Osaka tourism and food culture",
-        "sourceUrls": [
-          "https://www.osaka-info.jp/en/"
-        ]
-      }
+      "text": "In an Osaka shopping street, old family shops stand beside newer stores. If your family had a shop, would you want to run it one day? Why or why not?",
+      "insight": null
     },
     {
       "id": "truth-high-056",
       "country": "South Korea",
       "place": "Seoul",
       "cat": "Friends",
-      "text": "If moving into a smaller Seoul home gave you more independence but worried your family, what would you choose? Give a brief answer.",
+      "text": "If moving to a smaller Seoul home gave you more freedom but worried your family, which would matter more to you?",
       "insight": null
     },
     {
@@ -3596,7 +3392,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Dali",
       "cat": "Strangers",
-      "text": "Dali attracts some people seeking a slower life. If you could leave your current pace behind, what unresolved pressure might follow you anyway? Give a brief answer.",
+      "text": "If a quiet stay in Dali made you want to slow down, what part of your normal life would you miss first?",
       "insight": null
     },
     {
@@ -3604,7 +3400,7 @@ const TRUTH_BANK = {
       "country": "China",
       "place": "Tainan",
       "cat": "Strangers",
-      "text": "In a Tainan neighborhood where a family food stall has served several generations, what would preserving a legacy mean to you? Give a brief answer.",
+      "text": "A Tainan family stall has served food for generations. What family tradition would you keep, and what would you change?",
       "insight": {
         "title": "Tainan food culture varies by neighborhood",
         "text": "Tainan has strong local food traditions, and its street-food and breakfast culture is especially distinctive. The dishes and flavors people prefer still vary by family, generation, and neighborhood.",
@@ -3620,7 +3416,7 @@ const TRUTH_BANK = {
       "country": "Vietnam",
       "place": "Hanoi",
       "cat": "Friends",
-      "text": "If an old Hanoi lane were replaced by a development with better housing, what would you miss and what would you welcome? Give a brief answer.",
+      "text": "If an old Hanoi lane were replaced by better housing, what would you miss and what would you welcome?",
       "insight": {
         "title": "Small street cafes in Hanoi",
         "text": "Hanoi has many compact cafes and street-side places to sit, including places associated with egg coffee and bia hơi. These are examples of local food culture, not a requirement that everyone drinks the same thing or sits in the same way.",
@@ -3637,7 +3433,7 @@ const TRUTH_BANK = {
       "country": "Thailand",
       "place": "Chiang Mai",
       "cat": "Strangers",
-      "text": "During Chiang Mai's Yi Peng season, some people connect lantern imagery with letting go. Give a brief answer.",
+      "text": "During Chiang Mai's Yi Peng season, lanterns can suggest letting go. What small worry would you like to put down?",
       "insight": {
         "title": "Lantern imagery in northern Thailand",
         "text": "Yi Peng is a northern Thai festival associated with lanterns and Buddhist cultural traditions. Events and environmental guidance vary, and not every lantern image represents the same practice or meaning.",
@@ -3653,7 +3449,7 @@ const TRUTH_BANK = {
       "country": "Indonesia",
       "place": "Yogyakarta",
       "cat": "Friends",
-      "text": "If you inherited a batik cloth in Yogyakarta with a story you did not fully know, what would you ask before using or changing it? Give a brief answer.",
+      "text": "If you inherited a batik cloth with a story you did not know, what would you ask about it first?",
       "insight": {
         "title": "Batik is a living textile tradition",
         "text": "Batik uses wax-resist dyeing techniques and has important regional and cultural variations in Indonesia. It can be everyday clothing, ceremonial clothing, art, or a craft practice; one pattern does not represent all Indonesian batik.",
@@ -3669,23 +3465,15 @@ const TRUTH_BANK = {
       "country": "Philippines",
       "place": "Manila",
       "cat": "Strangers",
-      "text": "In a Manila family with relatives working overseas, a reunion can bring both joy and distance. When has a better opportunity for someone you love also felt like a loss for you?",
-      "insight": {
-        "title": "Merienda is a flexible snack break",
-        "text": "Merienda generally means a snack or small meal between larger meals and is used in several Spanish-influenced cultures, including the Philippines. What people eat and when they take the break differs by household and schedule.",
-        "topic": "everyday food",
-        "sourceName": "Merienda",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Merienda"
-        ]
-      }
+      "text": "In a Manila family with relatives abroad, reunions can feel happy and sad. When has someone's good news also made you miss them?",
+      "insight": null
     },
     {
       "id": "truth-high-063",
       "country": "India",
       "place": "Mumbai",
       "cat": "Friends",
-      "text": "Mumbai's dabbawala lunchboxes can carry a familiar meal across a demanding workday. What unseen everyday labor has made your own ambitions possible?",
+      "text": "Mumbai's dabbawala lunchboxes show the work behind an ordinary day. Who has helped you in a way you rarely say thank you for?",
       "insight": {
         "title": "Mumbai’s dabbawala system",
         "text": "Mumbai dabbawalas deliver home-cooked lunchboxes through a large, coordinated network. It is a delivery system shaped by local work patterns, and it should not be treated as evidence that every Mumbai worker eats the same kind of lunch.",
@@ -3701,7 +3489,7 @@ const TRUTH_BANK = {
       "country": "Sri Lanka",
       "place": "Colombo",
       "cat": "Strangers",
-      "text": "If life abroad meant giving up regular evenings on Colombo's Galle Face seafront with familiar people, what would make the move worthwhile? Give a brief answer.",
+      "text": "If moving abroad meant losing evenings at Colombo's Galle Face, what everyday routine would you miss most?",
       "insight": null
     },
     {
@@ -3709,7 +3497,7 @@ const TRUTH_BANK = {
       "country": "Nepal",
       "place": "Kathmandu",
       "cat": "Friends",
-      "text": "Around Kathmandu's repaired and surviving heritage buildings, how would you think about keeping traces of damage? Give a brief answer.",
+      "text": "Kathmandu's old buildings show both repairs and damage. Is there a difficult part of your past you would rather explain than hide?",
       "insight": {
         "title": "Kathmandu Valley’s heritage is living culture",
         "text": "Kathmandu Valley contains historic temples, courtyards, and neighborhoods that are also living community spaces. Respecting local rules about photography, access, and worship matters more than treating a site as a backdrop.",
@@ -3725,7 +3513,7 @@ const TRUTH_BANK = {
       "country": "Bangladesh",
       "place": "Dhaka",
       "cat": "Strangers",
-      "text": "Dhaka's Ekushey book fair is connected to the Bengali language movement. What language or way of speaking lets you express a part of yourself that another does?",
+      "text": "Dhaka's Ekushey book fair is linked to the Bengali language movement. Which language feels most natural to you, and when do you choose it?",
       "insight": {
         "title": "Why Ekushey matters",
         "text": "Ekushey is closely associated with Bangladesh’s Language Movement and the defense of Bangla as a language of public life. The annual Ekushey book fair is connected with that linguistic and literary history, while individual experiences of it vary.",
@@ -3741,24 +3529,15 @@ const TRUTH_BANK = {
       "country": "Pakistan",
       "place": "Lahore",
       "cat": "Friends",
-      "text": "If an older relative in Lahore wrote you a letter in a language you read slowly, would you ask them for help? Give a brief answer.",
-      "insight": {
-        "title": "Language and food vary across Pakistan",
-        "text": "Pakistan is multilingual, and Urdu, Punjabi, and many other languages have different roles across regions and communities. Halwa puri is associated with breakfast in some places, but food habits are shaped by family, city, and personal preference.",
-        "topic": "language and food",
-        "sourceName": "Languages of Pakistan and halwa puri",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Languages_of_Pakistan",
-          "https://en.wikipedia.org/wiki/Halwa_puri"
-        ]
-      }
+      "text": "If an older relative wrote you a letter in a language you read slowly, would you ask for help? When has pride stopped you asking?",
+      "insight": null
     },
     {
       "id": "truth-high-068",
       "country": "Mongolia",
       "place": "Ulaanbaatar",
       "cat": "Strangers",
-      "text": "Ulaanbaatar brings together people with different ties to urban and herding life. What part of your family's past do you feel close to without having lived it yourself?",
+      "text": "Ulaanbaatar brings together city and herding traditions. What family story would you like to learn more about?",
       "insight": null
     },
     {
@@ -3766,23 +3545,15 @@ const TRUTH_BANK = {
       "country": "Kazakhstan",
       "place": "Almaty",
       "cat": "Friends",
-      "text": "If a family conversation in Almaty shifted between Kazakh and Russian and you missed part of it, how would that affect your sense of belonging? Give a brief answer.",
-      "insight": {
-        "title": "A bazaar is more than a tourist scene",
-        "text": "Markets such as Almaty’s Green Bazaar bring together everyday shopping, food, and social exchange. What people buy there depends on season, neighborhood, and household needs, so a market visit can be ordinary as well as cultural.",
-        "topic": "market life",
-        "sourceName": "Green Bazaar",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Green_Bazaar"
-        ]
-      }
+      "text": "If people around you switched between Kazakh and Russian and you missed part of the talk, what would you do?",
+      "insight": null
     },
     {
       "id": "truth-high-070",
       "country": "Kyrgyzstan",
       "place": "Bishkek",
       "cat": "Strangers",
-      "text": "Seeing a traditional shyrdak felt rug in a Bishkek home, would you want to know who made it? What inherited skill might disappear from your family?",
+      "text": "If you saw a handmade shyrdak rug, would you ask who made it? What skill would you like to learn from your family?",
       "insight": null
     },
     {
@@ -3790,7 +3561,7 @@ const TRUTH_BANK = {
       "country": "Uzbekistan",
       "place": "Tashkent",
       "cat": "Friends",
-      "text": "If a Tashkent courtyard home were renovated beyond recognition, what would make it still feel like the same home? Give a brief answer.",
+      "text": "If a Tashkent courtyard home changed a lot, what would make it still feel like home? What change in your life took time to accept?",
       "insight": null
     },
     {
@@ -3798,56 +3569,31 @@ const TRUTH_BANK = {
       "country": "Türkiye",
       "place": "Istanbul",
       "cat": "Strangers",
-      "text": "An Istanbul ferry links different shores within the same city. Give a brief answer.",
-      "insight": {
-        "title": "Tea, simit, and ferry life in Istanbul",
-        "text": "Simit is a sesame-covered bread ring commonly sold in Türkiye, and Istanbul ferries connect the city’s shores. These are familiar parts of urban life for many people, but daily routines differ across neighborhoods and households.",
-        "topic": "city life and food",
-        "sourceName": "Simit and Istanbul ferries",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Simit",
-          "https://en.wikipedia.org/wiki/%C5%9Eehir_Hatlar%C4%B1"
-        ]
-      }
+      "text": "An Istanbul ferry connects two shores. What two parts of your life are you trying to balance?",
+      "insight": null
     },
     {
       "id": "truth-high-073",
       "country": "Lebanon",
       "place": "Beirut",
       "cat": "Friends",
-      "text": "If a Beirut apartment stairwell was the place neighbors checked on each other, what help would you readily offer and what help would be hardest to accept? Give a brief answer.",
-      "insight": {
-        "title": "Manoushe has many toppings",
-        "text": "Manoushe is a flatbread commonly associated with Lebanese breakfast and street food, often topped with za’atar, cheese, or other ingredients. Recipes and preferred toppings vary, so there is no single correct version.",
-        "topic": "regional food",
-        "sourceName": "Manakish",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Manakish"
-        ]
-      }
+      "text": "If neighbors in Beirut checked on each other, what help would you offer? What help is hard for you to accept?",
+      "insight": null
     },
     {
       "id": "truth-high-074",
       "country": "Jordan",
       "place": "Amman",
       "cat": "Strangers",
-      "text": "In an Amman neighborhood where relatives lived nearby, what would closeness offer you and what freedom might you miss? Give a brief answer.",
-      "insight": {
-        "title": "Amman’s hills shape everyday movement",
-        "text": "Amman is built across hills, so walking routes, stairs, and short taxi rides can feel very different from a flat city. A visitor’s experience depends on the neighborhood, weather, and mobility needs.",
-        "topic": "city geography",
-        "sourceName": "Amman geography",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Amman"
-        ]
-      }
+      "text": "If relatives lived close by in Amman, what would you enjoy and what privacy would you miss?",
+      "insight": null
     },
     {
       "id": "truth-high-075",
       "country": "Iran",
       "place": "Tehran",
       "cat": "Friends",
-      "text": "During a Tehran Nowruz visit, a haft-sin table can invite thoughts about renewal. What relationship pattern would you want to begin differently this year?",
+      "text": "During Tehran's Nowruz, a haft-sin table can represent a fresh start. What is one habit you would like to change this year?",
       "insight": null
     },
     {
@@ -3855,72 +3601,39 @@ const TRUTH_BANK = {
       "country": "Oman",
       "place": "Muscat",
       "cat": "Strangers",
-      "text": "A Muscat souq can bring inherited trades beside changing ambitions. Give a brief answer.",
-      "insight": {
-        "title": "Coffee and dates in Oman",
-        "text": "Serving Arabic coffee with dates is a familiar form of hospitality in Oman and across the region. The details of serving, timing, and conversation depend on the host and occasion; a guest can ask what is customary in that setting.",
-        "topic": "hospitality",
-        "sourceName": "Arabic coffee and dates in Oman",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Arabic_coffee",
-          "https://en.wikipedia.org/wiki/Omani_cuisine"
-        ]
-      }
+      "text": "If a family job in Muscat did not suit you, how could you respect your family and choose another path?",
+      "insight": null
     },
     {
       "id": "truth-high-077",
       "country": "Morocco",
       "place": "Marrakech",
       "cat": "Friends",
-      "text": "Imagine inheriting a room in a Marrakech riad that your family wanted kept exactly as it was. What would make changing a cherished space feel like growth rather than betrayal?",
-      "insight": {
-        "title": "Markets combine everyday life and tourism",
-        "text": "Marrakech markets include ordinary shopping, craft work, food, and tourism side by side. A market interaction is not automatically a performance for visitors, so asking permission and paying agreed prices respectfully matters.",
-        "topic": "market life",
-        "sourceName": "Medina of Marrakesh (UNESCO)",
-        "sourceUrls": [
-          "https://whc.unesco.org/en/list/331"
-        ]
-      }
+      "text": "If you inherited a Marrakech riad room your family wanted unchanged, what would you keep and what would you update?",
+      "insight": null
     },
     {
       "id": "truth-high-078",
       "country": "Tunisia",
       "place": "Tunis",
       "cat": "Strangers",
-      "text": "Tunis's medina workshops can make skilled labor visible. Give a brief answer.",
-      "insight": {
-        "title": "Harissa is a Tunisian chili paste",
-        "text": "Harissa is a chili-based paste strongly associated with Tunisian cooking, though recipes and heat levels vary. Asking for it on the side is a practical way to respect different spice preferences.",
-        "topic": "regional food",
-        "sourceName": "Harissa",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Harissa"
-        ]
-      }
+      "text": "In Tunis's medina workshops, skilled work is easy to notice. Whose work helps you every day?",
+      "insight": null
     },
     {
       "id": "truth-high-079",
       "country": "Egypt",
       "place": "Cairo",
       "cat": "Friends",
-      "text": "If a home on a Cairo street held decades of family memories but no longer suited its residents, how would you weigh staying against leaving? Give a brief answer.",
-      "insight": {
-        "title": "Koshary combines several staples",
-        "text": "Koshary commonly combines rice, pasta, lentils, chickpeas, tomato sauce, and fried onions, with variations in serving and toppings. It is a popular Egyptian dish, but people still have personal ways of ordering and seasoning it.",
-        "topic": "street food",
-        "sourceName": "Koshary",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Koshary"
-        ]
-      }
+      "text": "If a family home in Cairo no longer suited its residents, would you stay or move? What would make the decision hard?",
+      "insight": null
     },
     {
       "id": "truth-high-080",
       "country": "Ethiopia",
       "place": "Addis Ababa",
       "cat": "Strangers",
-      "text": "In an Addis Ababa coffee ceremony, time can be given to conversation rather than speed. Who gets your unhurried attention?",
+      "text": "An Addis Ababa coffee ceremony gives people time to talk. Who do you wish you had more unhurried time with?",
       "insight": {
         "title": "Ethiopian coffee ceremony",
         "text": "An Ethiopian coffee ceremony can involve roasting, grinding, brewing, and serving coffee in company. It is often a social occasion, but the timing and details differ between households and communities.",
@@ -3936,23 +3649,15 @@ const TRUTH_BANK = {
       "country": "Kenya",
       "place": "Nairobi",
       "cat": "Friends",
-      "text": "If a Nairobi friend invited you into a chama, a savings group, what trust would you need before joining? Give a brief answer.",
-      "insight": {
-        "title": "Matatu means shared minibus transport",
-        "text": "Matatu commonly refers to privately operated minibuses used for public transport in Kenya. Routes, music, decoration, and passenger experiences vary, so one matatu should not be treated as a complete picture of Kenyan transport.",
-        "topic": "urban mobility",
-        "sourceName": "Matatu",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Matatu"
-        ]
-      }
+      "text": "If a Nairobi friend invited you to join a savings group, what would you ask before saying yes?",
+      "insight": null
     },
     {
       "id": "truth-high-082",
       "country": "Tanzania",
       "place": "Zanzibar Stone Town",
       "cat": "Strangers",
-      "text": "Stone Town's carved doors can outlast the families who first used them. Give a brief answer.",
+      "text": "Stone Town's carved doors can outlast the families who used them. What story would you want a future resident of your old home to know?",
       "insight": {
         "title": "Stone Town is a living historic area",
         "text": "Stone Town in Zanzibar has historic buildings, narrow streets, homes, shops, and religious spaces. Visitors should treat it as a lived-in community and follow local guidance around photography and access.",
@@ -3968,7 +3673,7 @@ const TRUTH_BANK = {
       "country": "Ghana",
       "place": "Accra",
       "cat": "Friends",
-      "text": "At an Accra naming celebration, what would it mean to be named after someone else's hopes? What role or label were you given early in life, and does it still fit you?",
+      "text": "At a Ghanaian naming celebration, a name can carry family hopes. What name or nickname has shaped how people see you?",
       "insight": {
         "title": "Naming ceremonies vary in Ghana",
         "text": "Naming ceremonies in Ghana can mark a child’s welcome into a family and community, but the timing, names, and rituals differ among ethnic groups, religions, and families. There is no single Ghanaian naming format.",
@@ -3984,23 +3689,15 @@ const TRUTH_BANK = {
       "country": "Nigeria",
       "place": "Lagos",
       "cat": "Strangers",
-      "text": "If you made a long Lagos commute to support people who depended on you, what would make that effort feel worthwhile? Give a brief answer.",
-      "insight": {
-        "title": "Suya is a spiced grilled meat dish",
-        "text": "Suya is associated with spiced grilled meat and is widely enjoyed in Nigeria and neighboring parts of West Africa. Vendors and regions differ in seasoning, cuts, and accompaniments, so spice levels should be checked rather than assumed.",
-        "topic": "street food",
-        "sourceName": "Suya",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Suya"
-        ]
-      }
+      "text": "If you made a long Lagos commute for someone you care about, what would make the trip feel worth it?",
+      "insight": null
     },
     {
       "id": "truth-high-085",
       "country": "Senegal",
       "place": "Dakar",
       "cat": "Friends",
-      "text": "In Dakar, teranga is often used to describe an ideal of hospitality. When does your own generosity come from warmth?",
+      "text": "Teranga is linked with hospitality in Senegal. When do you give because you want to, and when because you feel you must?",
       "insight": {
         "title": "The idea of teranga",
         "text": "Teranga is a Wolof word often translated as hospitality or generosity, and it is associated with Senegalese ideas of welcoming others. It is a broad cultural value, not a promise that every person or situation behaves the same way.",
@@ -4016,7 +3713,7 @@ const TRUTH_BANK = {
       "country": "South Africa",
       "place": "Cape Town",
       "cat": "Strangers",
-      "text": "Cape Town's District Six Museum records stories of a community affected by forced removals. What story about belonging from your own family or neighborhood deserves to be preserve?",
+      "text": "Cape Town's District Six Museum tells stories of forced removals. What story from your family or neighborhood should people remember?",
       "insight": {
         "title": "District Six carries displacement histories",
         "text": "District Six in Cape Town is remembered through stories of a community affected by forced removals under apartheid. The history is about real people and continuing memory, so it deserves more care than a simple “before and after” travel story.",
@@ -4033,7 +3730,7 @@ const TRUTH_BANK = {
       "country": "Mexico",
       "place": "Mexico City",
       "cat": "Friends",
-      "text": "At a Mexico City Day of the Dead ofrenda, an offering table, what ordinary object could represent someone you miss? Give a brief answer.",
+      "text": "At a Mexico City Day of the Dead ofrenda, what ordinary object would remind you of someone you miss?",
       "insight": {
         "title": "Ofrendas and remembrance",
         "text": "During Día de Muertos, many families create an ofrenda to remember deceased loved ones with photographs, foods, flowers, and meaningful objects. Practices vary by region and family; it is not simply a generic “costume holiday.”",
@@ -4049,7 +3746,7 @@ const TRUTH_BANK = {
       "country": "Guatemala",
       "place": "Antigua",
       "cat": "Strangers",
-      "text": "Antigua's Semana Santa street carpets may be carefully made and then walked over. What have you loved doing even though it left no lasting result?",
+      "text": "Antigua's Semana Santa carpets are carefully made and then walked over. What temporary thing have you enjoyed making?",
       "insight": {
         "title": "Antigua’s sawdust carpets are temporary art",
         "text": "During Semana Santa in Antigua Guatemala, alfombras can be made from colored sawdust and other materials along processional routes. They are carefully created and then walked over as part of the procession, which is part of their temporary nature.",
@@ -4065,23 +3762,15 @@ const TRUTH_BANK = {
       "country": "Jamaica",
       "place": "Kingston",
       "cat": "Friends",
-      "text": "At a Kingston record shop, a song might carry a family memory as strongly as a photograph. What song connects you to an earlier version of yourself?",
-      "insight": {
-        "title": "A Jamaican patty is a filled pastry",
-        "text": "Jamaican patties are savory pastries with fillings such as seasoned meat or vegetables, and bakeries offer different styles. Food memories are personal, so a familiar patty can mean something different to each family or neighborhood.",
-        "topic": "everyday food",
-        "sourceName": "Jamaican patty",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Jamaican_patty"
-        ]
-      }
+      "text": "At a Kingston record shop, what song takes you back to an earlier time in your life?",
+      "insight": null
     },
     {
       "id": "truth-high-090",
       "country": "Cuba",
       "place": "Havana",
       "cat": "Strangers",
-      "text": "Watching neighbors repair an everyday object in Havana, what would you notice about making things last? What belief about replacing?",
+      "text": "Watching people repair things in Havana, what item would you rather fix than replace? Why?",
       "insight": null
     },
     {
@@ -4089,39 +3778,23 @@ const TRUTH_BANK = {
       "country": "Colombia",
       "place": "Medellin",
       "cat": "Friends",
-      "text": "In Medellin's Comuna 13, residents and guides tell stories of a neighborhood that outsiders may know through violence. When have people reduced you to a difficult chapter?",
-      "insight": {
-        "title": "Medellín’s cable cars are public transport",
-        "text": "Medellín’s Metrocable connects hillside neighborhoods with the wider public-transit network. It is transport infrastructure first, even though the views also make it interesting to visitors; local experiences depend on route and daily use.",
-        "topic": "urban mobility",
-        "sourceName": "Metrocable (Medellín)",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Metrocable_(Medell%C3%ADn)"
-        ]
-      }
+      "text": "In Medellin's Comuna 13, people tell stories beyond violence. When have others seen only one part of your story?",
+      "insight": null
     },
     {
       "id": "truth-high-092",
       "country": "Peru",
       "place": "Lima",
       "cat": "Strangers",
-      "text": "Lima's neighborhoods hold food traditions brought from different regions. What part of where you come from do you keep alive in daily life?",
-      "insight": {
-        "title": "Ceviche and chicha morada",
-        "text": "Ceviche generally uses seafood cured in citrus with seasonings, while chicha morada is a non-alcoholic drink made from purple corn and spices. Recipes differ by region and household, and food safety depends on fresh ingredients and proper handling.",
-        "topic": "food and drink",
-        "sourceName": "Peruvian cuisine",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Peruvian_cuisine"
-        ]
-      }
+      "text": "Lima's food traditions come from many regions. What food from your home do you still make or share?",
+      "insight": null
     },
     {
       "id": "truth-high-093",
       "country": "Bolivia",
       "place": "La Paz",
       "cat": "Friends",
-      "text": "At La Paz's Alasitas fair, miniature objects can stand for hoped-for things. Which wish of yours would look impressive as a miniature but would not actually make you?",
+      "text": "At La Paz's Alasitas fair, people buy miniatures for their wishes. What small wish would you choose?",
       "insight": {
         "title": "Miniatures at Alasitas",
         "text": "At La Paz’s Alasitas festival, people may buy miniature objects representing hopes such as a home, work, or prosperity. The meanings and rituals around them differ, so the miniature is best understood as a personal or community symbol rather than a guarantee.",
@@ -4153,7 +3826,7 @@ const TRUTH_BANK = {
       "country": "Argentina",
       "place": "Buenos Aires",
       "cat": "Friends",
-      "text": "At a Buenos Aires neighborhood social club, belonging can grow through showing up repeatedly. Which relationship have you expected to survive without your regular effort?",
+      "text": "At a Buenos Aires social club, people build friendships by showing up. Which friendship would you like to make more time for?",
       "insight": null
     },
     {
@@ -4161,23 +3834,15 @@ const TRUTH_BANK = {
       "country": "Brazil",
       "place": "Salvador",
       "cat": "Strangers",
-      "text": "In Salvador, some Afro-Brazilian religious spaces ask visitors to follow rules about access and photography. Give a brief answer.",
-      "insight": {
-        "title": "Acarajé has Afro-Brazilian roots",
-        "text": "Acarajé is a black-eyed-pea fritter associated especially with Bahia and Afro-Brazilian culinary and religious traditions. Sellers and communities may have their own practices, so visitors should ask before photographing people or sacred contexts.",
-        "topic": "food and heritage",
-        "sourceName": "Acarajé",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Acaraj%C3%A9"
-        ]
-      }
+      "text": "Some religious spaces in Salvador have rules about photos and access. When have you learned to ask before taking part?",
+      "insight": null
     },
     {
       "id": "truth-high-097",
       "country": "Portugal",
       "place": "Lisbon",
       "cat": "Friends",
-      "text": "If a Lisbon street where you grew up became too expensive for people you knew, would returning still feel like coming home? What gives you belonging when access to a place changes?",
+      "text": "If a Lisbon street became too expensive for the people who lived there, would it still feel like home? What makes a place feel like home to you?",
       "insight": null
     },
     {
@@ -4185,7 +3850,7 @@ const TRUTH_BANK = {
       "country": "Spain",
       "place": "Valencia",
       "cat": "Strangers",
-      "text": "During Valencia's Fallas, elaborate temporary sculptures are eventually burned. What achievement or role have you held on to after it stopped helping you grow?",
+      "text": "At Valencia's Fallas, large sculptures are eventually burned. What old role or habit are you ready to leave behind?",
       "insight": {
         "title": "A local detail from Valencia",
         "text": "Valencia’s Fallas is known for large temporary artistic monuments and public celebrations. Socarrat is the browned layer that can form at the bottom of a paella; whether people seek it out is a matter of preference, not a test of authenticity.",
@@ -4201,7 +3866,7 @@ const TRUTH_BANK = {
       "country": "Finland",
       "place": "Helsinki",
       "cat": "Friends",
-      "text": "At Helsinki's Oodi library, a person can spend time without being expected to buy something. Where do you feel allowed to exist without proving your usefulness?",
+      "text": "At Helsinki's Oodi library, you can stay without buying anything. Where do you feel comfortable just being yourself?",
       "insight": null
     },
     {
@@ -4209,7 +3874,7 @@ const TRUTH_BANK = {
       "country": "Georgia",
       "place": "Tbilisi",
       "cat": "Strangers",
-      "text": "At a Tbilisi supra, a toast can publicly praise family or friendship. What quality do people often praise in you that sometimes feels like a burden to keep performing?",
+      "text": "At a Tbilisi supra, a toast may praise family or friendship. What compliment do people often give you?",
       "insight": {
         "title": "A Georgian supra",
         "text": "A supra is a Georgian feast where a tamada, or toastmaster, may guide a sequence of toasts. Not every meal is a supra, and the number and style of toasts depend on the occasion and the people present.",
@@ -4225,23 +3890,15 @@ const TRUTH_BANK = {
       "country": "Australia",
       "place": "Melbourne",
       "cat": "Friends",
-      "text": "If your Melbourne neighborhood changed until your favorite meeting place disappeared, which friendships would survive without that shared routine? Give a brief answer.",
-      "insight": {
-        "title": "Melbourne’s laneways are mixed-use spaces",
-        "text": "Melbourne’s laneways contain cafes, small businesses, art, residences, and service areas. Their character changes by street and time of day, so the familiar cafe image is only one part of how people use them.",
-        "topic": "city life",
-        "sourceName": "Melbourne laneways",
-        "sourceUrls": [
-          "https://en.wikipedia.org/wiki/Lanes_and_arcades_of_Melbourne"
-        ]
-      }
+      "text": "If your Melbourne meeting place disappeared, which friendship would you still keep? How would you stay in touch?",
+      "insight": null
     },
     {
       "id": "truth-high-102",
       "country": "New Zealand",
       "place": "Wellington",
       "cat": "Strangers",
-      "text": "Wellington street signs can place te reo Maori alongside English. What place name or pronunciation did you learn late?",
+      "text": "Wellington signs may show te reo Māori and English. What word or place name did you learn late?",
       "insight": {
         "title": "Te reo Māori place names",
         "text": "Te reo Māori is an official language of New Zealand, and Māori place names are used alongside English names in many public contexts. Pronunciation takes practice; asking and listening is more respectful than treating a mistake as a joke.",
@@ -4257,7 +3914,7 @@ const TRUTH_BANK = {
       "country": "Fiji",
       "place": "Suva",
       "cat": "Friends",
-      "text": "If a Suva family gathering brought obligations to several generations into one room, what would you willingly take on and what would you need to decline? Give a brief answer.",
+      "text": "If a Suva family gathering asked you to help with many tasks, what would you happily do and what would you decline?",
       "insight": null
     },
     {
@@ -4265,7 +3922,7 @@ const TRUTH_BANK = {
       "country": "Samoa",
       "place": "Apia",
       "cat": "Strangers",
-      "text": "In a family connected to Apia, fa'a Samoa, the Samoan way, can shape ideas about service and belonging. Give a brief answer.",
+      "text": "Fa'a Samoa is often described as the Samoan way of living. What does helping your family mean to you, and how do you also make time for yourself?",
       "insight": {
         "title": "Fa’a Samoa",
         "text": "Fa’a Samoa is often translated as “the Samoan way” and refers broadly to Samoan cultural values and social practices, including relationships and service to family and community. It is not one identical rulebook, and people interpret it in different ways.",
