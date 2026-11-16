@@ -317,6 +317,8 @@
   .category-card .category-card-icon{display:block;font-size:32px;margin-bottom:5px;}
   .category-card .category-card-name{display:block;font-size:19px;font-weight:700;}
   .category-card .category-card-desc{display:block;font-size:13px;line-height:1.35;margin-top:5px;opacity:.8;}
+  /* Keep card copy level while preserving the lift on hover. */
+  .choice-card:hover{transform:translateY(-8px) scale(1.03);}
   .category-actions{margin-bottom:18px;}
   .category-actions .btn:disabled{opacity:.45;}
   .dare-category-note{font-size:15px;font-weight:600;line-height:1.5;text-align:center;max-width:640px;margin:8px auto 22px;}
@@ -363,6 +365,17 @@
   #screen-draw > .btn{font-size:15px;padding:9px 20px;border-width:3px;box-shadow:3px 3px 0 var(--ink);}
   #screen-draw > .row{gap:8px;margin-top:4px!important;}
   #screen-draw > .row .btn{font-size:13px;padding:7px 14px;border-width:2px;box-shadow:2px 2px 0 var(--ink);}
+  #screen-draw .flip-card.dare-draw-rolling{animation:dareDrawShuffle .18s ease-in-out infinite;}
+  #screen-draw .dare-draw-rolling .qmark{animation:dareDrawPulse .5s ease-in-out infinite;}
+  #screen-draw .dare-draw-rolling .back-sub{font-weight:700;letter-spacing:.5px;}
+  @keyframes dareDrawShuffle{
+    0%,100%{transform:rotate(-1deg) translateY(0) scale(1.01);}
+    50%{transform:rotate(1deg) translateY(-3px) scale(1.02);}
+  }
+  @keyframes dareDrawPulse{
+    0%,100%{transform:scale(1);opacity:.8;}
+    50%{transform:scale(1.16);opacity:1;}
+  }
   @media(max-width:600px){
     .screen{padding-top:100px;}
     .hud{left:9px;right:9px;top:10px;gap:8px;}
@@ -4307,7 +4320,7 @@ const DARE_BANK = {
       "With a partner, make up a two-line greeting for a friendly alien.",
       "Take turns making a happy face and a surprised face; match each other twice.",
       "With a partner, each name one ingredient; invent a snack with both.",
-      "Ask a partner to pick a number from 1 to 5; together clap it once.",
+      "With a partner, mime greeting an imaginary neighbor and decide together what they need.",
       "With a partner, pretend to carry an invisible sofa three steps; keep it level.",
       "Each partner gives the other one friendly compliment in a different voice.",
       "With a partner, choose a pretend team name and say it together.",
@@ -4315,7 +4328,7 @@ const DARE_BANK = {
       "With a partner, each mime one step of making a cup of tea.",
       "Ask a partner to choose an animal; together show its walk without leaving your spots.",
       "With a partner, take turns pointing to an imaginary direction and follow each other.",
-      "Each partner says one word that rhymes with a word chosen by the group.",
+      "With a partner, each add one detail to an imaginary picnic; agree on the final plan.",
       "With a partner, each make a pose for a tiny, medium, and giant object.",
       "Ask a partner to pick a nearby object; agree on a new name for it.",
       "With a partner, take turns saying one word in a four-word weather report.",
@@ -4336,7 +4349,7 @@ const DARE_BANK = {
       "Create a 30-second welcome exchange between a visitor and a host using three invented gestures.",
       "Create a 20-second silent conversation using only two shared facial expressions and clear turn-taking.",
       "Pitch a 30-second snack made from two ingredients chosen by the partners; include a name and a slogan.",
-      "Create a shared eight-beat rhythm where each partner leads four beats.",
+      "With a partner, improvise a 30-second scene in which two neighbors solve a small problem.",
       "Mime moving an invisible sofa around two imaginary obstacles without speaking.",
       "Create a 30-second awards presentation with two imaginary awards and a shared closing slogan.",
       "Invent a team name, logo gesture, and three-word motto in 30 seconds.",
@@ -4344,7 +4357,7 @@ const DARE_BANK = {
       "Create a silent six-step tea routine, alternating one step each.",
       "Create a 30-second animal meeting where each partner plays a different animal with a shared problem.",
       "Navigate an imaginary park together for 30 seconds using only gestures and one shared destination.",
-      "Take turns building a four-line rhyme about a lost hat.",
+      "Create a 30-second picnic scene where each partner wants a different menu and you find a fair choice.",
       "Create a three-size transformation sequence and switch who leads each size.",
       "Create a 30-second product pitch together for that object under its new name.",
       "Create a 30-second weather report in which each partner forecasts a different imaginary neighborhood.",
@@ -4365,7 +4378,7 @@ const DARE_BANK = {
       "Perform a 45-second first-contact scene where both sides misunderstand one polite gesture, then repair it.",
       "Perform a 45-second silent disagreement that resolves through three coordinated expressions and one shared gesture.",
       "Present a 45-second cooking show together: one host, one ingredient expert, a failed step, and a safe recovery.",
-      "Perform a sixteen-beat rhythm with three leadership changes and a silent pause that both partners hit together.",
+      "Perform a 45-second neighbor scene with a misunderstanding, a kind explanation, and a shared solution.",
       "Perform a 45-second furniture-moving mission with a fragile lamp, a narrow doorway, and a successful delivery.",
       "Perform a 45-second awards ceremony with an announcer, two winners, one unexpected award, and a kind finale.",
       "Launch a fictional team in 45 seconds with a name, motto, origin story, challenge, and synchronized sign-off.",
@@ -4373,7 +4386,7 @@ const DARE_BANK = {
       "Perform a 45-second tea ceremony in which one person is a careful host and the other is an enthusiastic but confused guest.",
       "Perform a 45-second animal council deciding how to share one imaginary watering hole; end with a clear agreement.",
       "Perform a 45-second silent treasure hunt with three clues, a wrong turn, and a cooperative discovery.",
-      "Perform a 45-second spoken-word duet about a lost hat, alternating lines and ending on a shared rhyme.",
+      "Perform a 45-second picnic-planning scene with two strong preferences, one surprise problem, and a friendly compromise.",
       "Perform a 45-second scale-changing scene where the same imaginary object causes three different problems.",
       "Deliver a 45-second co-hosted product launch with a demo, a customer objection, and a final promise you can keep.",
       "Perform a 45-second weather emergency briefing with two presenters, conflicting forecasts, and one practical solution.",
@@ -4395,9 +4408,9 @@ const DARE_BANK = {
       "Each player points to a corner of the room; together choose the imaginary destination with the most votes.",
       "Everyone chooses a different imaginary hat and poses for three seconds.",
       "Each player makes one gentle sound for a short group rainstorm; stop together.",
-      "Everyone says one word beginning with the first letter of their player number or first name.",
+      "Everyone chooses a friendly job at an imaginary hotel and greets the next player.",
       "Each player mimes one action from a morning routine; everyone repeats the chain once.",
-      "Everyone names one thing that fits in a pocket; no repeats.",
+      "Everyone chooses one imaginary item for a shared suitcase; show it with a gesture.",
       "Each player makes one pose for a group photo; hold for five seconds.",
       "Everyone chooses a color; the player with the rarest color choice gives a cheerful one-line slogan.",
       "Go around saying one kind word about the group as a whole; no repeats.",
@@ -4406,8 +4419,8 @@ const DARE_BANK = {
       "Everyone makes a small gesture for 'surprise'; repeat the group sequence once.",
       "Each player adds one word to name an imaginary cafe; read the name together.",
       "Go around naming a place you would enjoy resting; no explanations needed.",
-      "Everyone chooses a number from one to three with fingers; the majority becomes the group's next pose.",
-      "Each player says one word that rhymes with 'day' or passes.",
+      "Vote on an imaginary holiday destination, then make one shared postcard pose.",
+      "Each player adds one short sentence to a story about a lost picnic basket.",
       "Everyone pretends to hold a different imaginary object; freeze for five seconds.",
       "Each player says one small act that makes a day easier; no repeats.",
       "Everyone makes a tiny wave to an imaginary neighbor; repeat in slow motion.",
@@ -4424,9 +4437,9 @@ const DARE_BANK = {
       "Tell a group story in which each player adds one sentence about reaching that destination.",
       "Go around describing a shared hat shop; each player adds one unusual hat and its customer.",
       "Build a 30-second group soundscape from breeze to rain to sunshine, with a conductor chosen by the group.",
-      "Make a group sentence by adding one word per player; keep it friendly and understandable.",
+      "Build a 30-second hotel welcome scene with one role for each player and one guest request.",
       "Build a silent group morning routine with one action per player and a clear ending.",
-      "Go around naming small objects, then choose three to build an imaginary invention.",
+      "Create a 30-second packing scene where the group decides what the suitcase really needs.",
       "Create three group photos in sequence: a celebration, a mystery, and a quiet afternoon.",
       "Create a group rainbow story, with one character or object for each chosen color.",
       "Create a group motto from one word contributed by each player, then say it together.",
@@ -4435,8 +4448,8 @@ const DARE_BANK = {
       "Create a three-scene group mime using gestures for surprise, confusion, and relief.",
       "Build a cafe menu with one item per player and choose a shared house rule.",
       "Create a group map using one resting place from each player, then choose a route between them.",
-      "Repeat a three-pose sequence chosen by majority vote, changing the leader each time.",
-      "Build a four-line group rhyme, one line per group section.",
+      "Create a 30-second holiday postcard scene with one gesture from each player.",
+      "Build a 30-second group story about finding the basket, with each player adding one helpful detail.",
       "Create a silent group scene where the objects gradually reveal they belong in one place.",
       "Arrange the group ideas into a spoken routine from morning to evening.",
       "Create a 30-second silent neighborhood greeting involving three imaginary neighbors and one lost parcel.",
@@ -4453,9 +4466,9 @@ const DARE_BANK = {
       "Tell a 45-second destination story with three scenes; each player must add a problem or solution and the ending must return to the first detail.",
       "Perform a 45-second hat-shop scene where the group solves a mix-up involving three customers and one missing hat.",
       "Perform a 45-second sound story with four weather stages; every player must add a layer and then remove it on cue.",
-      "Create a 45-second group poem with one line per player, a repeated refrain, and a final line that echoes the first.",
+      "Perform a 45-second hotel scene where the group handles a surprising guest request together.",
       "Perform a 45-second morning routine that goes wrong halfway through, then let the group repair it together.",
-      "Pitch a 45-second group invention made from one object contributed by each player; include a problem and a safe solution.",
+      "Perform a 45-second travel scene in which the group solves a suitcase mix-up with a kind explanation.",
       "Perform a 45-second silent photo album with four scenes and one recurring pose that changes meaning each time.",
       "Tell a 45-second color-world story in which two colors disagree and the whole group helps them find a shared job.",
       "Deliver a 45-second group speech with a motto, a challenge the group faced, and a specific way everyone contributed.",
@@ -4464,8 +4477,8 @@ const DARE_BANK = {
       "Perform a 45-second silent mystery where each player contributes one clue gesture and the final gesture reveals the answer.",
       "Open a 45-second cafe together: each player has a job, the group faces one customer problem, and everyone helps solve it.",
       "Present a 45-second travel documentary along the group's route with a narrator and one local tip from each player.",
-      "Perform a 45-second group choreography with three votes, three leaders, and a final pose everyone can safely copy.",
-      "Perform a 45-second group poem with two rhyme sounds, a repeating chorus, and a closing line voted on by everyone.",
+      "Perform a 45-second travel scene where the group visits three imaginary places and ends in one shared photo pose.",
+      "Perform a 45-second group story with a missing basket, three possible helpers, and an ending everyone can act out.",
       "Perform a 45-second reveal scene in which every imaginary object is needed to solve one shared problem.",
       "Perform a 45-second 'day made easier' guide in which each player demonstrates one helpful habit and the narrator links them.",
       "Perform a 45-second neighborhood story where the parcel passes through everyone before reaching the right person.",
@@ -4483,6 +4496,7 @@ const INTERACTION_RULES = Object.freeze({
   chance: 0.4,
   types: Object.freeze(['match', 'duo', 'delegate']),
 });
+const DARE_DRAW_DURATION = 2000;
 const categoryMeta = Object.freeze({
   performance: {name: 'Performance & Impressions', icon: '🎭', description: 'Act, mime, narrate, and switch characters.'},
   music: {name: 'Music & Rhythm', icon: '🎵', description: 'Hum, sing, move, and build gentle rhythms.'},
@@ -4926,12 +4940,14 @@ function startDraw() {
   $('question-image-caption').textContent = '';
   renderInsight(null);
   $('q-badges').replaceChildren();
-  $('flip-card').classList.remove('flipped');
+  $('flip-card').classList.remove('flipped', 'dare-draw-rolling');
+  $('flip-card').removeAttribute('aria-busy');
   $('interaction-panel').hidden = true;
   $('participant-options').replaceChildren();
   $('btn-match-ready').hidden = true;
   $('btn-draw').style.display = '';
   $('btn-draw').disabled = false;
+  $('btn-draw').textContent = '🎴 DRAW A CARD';
   $('btn-next-round').style.display = 'none';
   $('btn-next-round').disabled = true;
   $('btn-redo').style.display = 'none';
@@ -5015,19 +5031,8 @@ $('btn-insight').addEventListener('click', () => {
     $('btn-insight').textContent = '✨ SHOW THE LOCAL SECRET';
   }
 });
-$('btn-draw').addEventListener('click', () => {
-  if (state.screen !== 'screen-draw' || state.currentCard || $('btn-draw').disabled) return;
-  if (state.mode === 'truth' && !state.country) return;
-  const card = drawCard(state.mode, state.country);
-  if (!card) {
-    toast('That country deck is empty. Let us find another country.');
-    startCountryDraw();
-    return;
-  }
-  state.currentCard = card;
+function revealDrawnCard(card) {
   const isTruth = state.mode === 'truth';
-  state.interaction = rollInteraction();
-  $('btn-draw').disabled = true;
   $('flip-front').classList.toggle('truth-front', isTruth);
   $('flip-front').classList.toggle('dare-front', !isTruth);
   $('q-badges').replaceChildren();
@@ -5056,6 +5061,35 @@ $('btn-draw').addEventListener('click', () => {
   $('btn-redo').style.display = '';
   renderInteraction();
   updateHUD();
+}
+$('btn-draw').addEventListener('click', () => {
+  if (state.screen !== 'screen-draw' || state.currentCard || $('btn-draw').disabled) return;
+  if (state.mode === 'truth' && !state.country) return;
+  const card = drawCard(state.mode, state.country);
+  if (!card) {
+    toast('That country deck is empty. Let us find another country.');
+    startCountryDraw();
+    return;
+  }
+  state.currentCard = card;
+  const isTruth = state.mode === 'truth';
+  state.interaction = rollInteraction();
+  $('btn-draw').disabled = true;
+  if (!isTruth) {
+    $('btn-draw').textContent = '🎴 DRAWING…';
+    $('flip-card').classList.add('dare-draw-rolling');
+    $('flip-card').setAttribute('aria-busy', 'true');
+    $('back-label').textContent = 'DARE';
+    $('back-sub').textContent = 'drawing a challenge…';
+    scheduleAnimation(() => {
+      $('flip-card').classList.remove('dare-draw-rolling');
+      $('flip-card').removeAttribute('aria-busy');
+      $('btn-draw').textContent = '🎴 DRAW A CARD';
+      revealDrawnCard(card);
+    }, DARE_DRAW_DURATION);
+    return;
+  }
+  revealDrawnCard(card);
 });
 $('btn-redo').addEventListener('click', () => {
   if (state.screen !== 'screen-draw' || !state.currentCard) return;
